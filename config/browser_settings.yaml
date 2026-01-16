@@ -1,0 +1,70 @@
+browser:
+  # --- Global/Client Configuration (Used by PlaywrightClient) ---
+
+  # Browser type to launch
+  type: chrome
+
+  # Global Headless Mode: Takes precedence over browser-specific args if present.
+  headless: false
+
+  # Global Incognito Mode: Playwright's preferred way to set private mode via context options.
+  incognito: true
+
+  # Global Viewport Size: Use this standard format (WIDTHxHEIGHT).
+  # The value "1080x1920" is used to set the CONTEXT's viewport size.
+  window_size: null
+
+  # Optional: Set this to true to use the '--start-maximized' argument
+  # (only effective for non-headless Chrome/Edge).
+  maximize_window: true
+
+  # Global Resource Management
+  disable_images: false
+  disable_gpu: true
+  disable_extensions: true
+
+  # Path to the browser driver (set to null if in PATH)
+  driver_path: null
+
+  # --- Additional/Generic Capabilities ---
+  additional_capabilities:
+    args:
+      disable_logging: true
+
+    prefs:
+      download.default_directory: "/path/to/download"
+
+  # --- Chrome-specific Options (Cleaned up to remove duplicates) ---
+  chrome_options:
+    args:
+      # These arguments are unique or necessary safety measures:
+      no_sandbox: true  # Required in Docker
+
+      # REMOVED DUPLICATES: headless, disable_gpu, incognito, and window_size
+      # are now handled by the global keys above or the Playwright context options.
+
+    prefs:
+      download.default_directory: "/path/to/download"
+
+    PerformanceMetrics:
+      enable_performance_metrics: true
+
+  # --- Firefox-specific options (Configuration retained as given) ---
+  firefox_options:
+    prefs:
+      privatebrowsing_autostart: true
+      extensions_enabled: false
+      permissions_default_image: 2
+    args:
+      headless: true
+      disable_gpu: true
+
+  # --- Edge-specific options (Configuration retained as given) ---
+  edge_options:
+    args:
+      headless: true
+      disable_gpu: true
+      inprivate: true
+      no_sandbox: true
+    prefs:
+      download.default_directory: "/path/to/download"

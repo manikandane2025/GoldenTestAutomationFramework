@@ -1,0 +1,39 @@
+# dev_config.yaml
+
+# Kafka related configurations
+kafka:
+  kafka_host: "dev-kafka-host"
+  kafka_topic: "dev-kafka-topic"
+  kafka_group_id: "dev-consumer-group"
+  kafka_auto_offset_reset: "earliest"
+  kafka_enable_auto_commit: true
+  sasl_mechanism: "PLAIN"
+  sasl_plain_username: "dev-username"  # Dev-specific username
+  sasl_plain_password: ""  # Leave empty if Vault or another mechanism is used for token
+  security_protocol: "SASL_PLAINTEXT"
+
+# HashiCorp Vault usage
+vault:
+  use_hashicorp_vault: "No"  # Not using Vault for dev environment (hardcoded values)
+  vault_token: "dev-vault-token"       # Vault token for dev environment
+  vault_url: "http://vault.example.com" # Vault URL for dev environment
+  vault_secret_path: "path/to/kafka/dev/token" # Path to the Kafka token secret in Vault
+
+# Databricks configurations
+databricks:
+  databricks_token: "dev-databricks-token"
+  databricks_host: "dev-databricks-host"
+
+# ADLS configurations
+adls:
+  adls_account: "dev-adls-account"
+  adls_container: "dev-adls-container"
+  adls_account_url: https://<your-adls-account-name>.dfs.core.windows.net
+
+# Splunk configuration for logging
+splunk:
+  enabled: true
+  url: "https://splunk-dev.example.com"
+  token: "splunk-dev-token"
+  index: "dev-test-results"
+

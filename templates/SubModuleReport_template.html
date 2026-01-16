@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic HTML Table Report</title>
+    <p>Report Generated Date: {{ report_generated_date }}</p>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        table-layout: fixed;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+        overflow-wrap: break-word;
+    }
+th {
+    background-color: #87CEEB; /* Soft Blue */
+}
+
+th:nth-child(1) {
+    background-color: #E5E5EA; /* Grey */
+}
+
+th:nth-child(2) {
+    background-color: #B2FFFC; /* Humana Green */
+}
+
+.nested-table {
+    margin-left: 20px;
+    width: 100%;
+    table-layout: fixed;
+    max-width: calc(100% - 20px);
+    background-color: #f7f7f7; /* Light gray */
+}
+
+    #metadata-table {
+    width: 50%;
+    font-size: 14px;
+    margin-bottom: 20px;
+    }
+
+    #metadata-table th, #metadata-table td {
+        padding: 5px;
+        border: 1px solid #ddd;
+    }
+
+    #metadata-table th {
+        background-color: #f0f0f0; /* Light gray */
+    }
+    .highlight {
+    background-color: #ffcccc; /* Light red */
+    color: #ff0000; /* Red */
+    }
+
+    .nested-table th, .nested-table td {
+        width: 25%;
+        word-wrap: break-word;
+    }
+    .filter-input {
+    width: 30%; /* Take up 30% of the available horizontal space */
+    padding: 10px;
+    margin-bottom: 20px;
+    }
+    .highlight {
+        background-color: #ffcccc; /* Light red */
+        color: #ff0000; /* Red */
+    }
+</style>
+</head>
+<body>
+
+    <h2>Dynamic Data Report</h2>
+
+    {% if metadata %}
+        <table id="metadata-table">
+            <thead>
+                <tr>
+                    <th>Metadata Key</th>
+                    <th>Metadata Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in metadata.items() %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <input class="filter-input" id="filter-input" type="text" placeholder="Filter...">
+
+
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th style="width: 5%;">Field</th>
+                <th style="width: 95%;">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in data.items() %}
+                {% if value is iterable and not value is string %}
+                    {% if value is mapping %}
+                        <tr>
+                            <td>{{ key }}</td>
+                            <td>
+                                <table class="nested-table">
+                                    <thead>
+                                        <tr>
+                                            {% for sub_key in value.keys() %}
+                                                <th>{{ sub_key }}</th>
+                                            {% endfor %}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            {% for sub_key, sub_value in value.items() %}
+                                                {% if sub_value is iterable and not sub_value is string %}
+                                                    {% if sub_value is mapping %}
+                                                        <td>
+                                                            <table class="nested-table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        {% for sub_sub_key in sub_value.keys() %}
+                                                                            <th>{{ sub_sub_key }}</th>
+                                                                        {% endfor %}
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        {% for sub_sub_key, sub_sub_value in sub_value.items() %}
+                                                                            <td>{{ sub_sub_value | safe }}</td>
+                                                                        {% endfor %}
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    {% elif sub_value.__class__.__name__ == 'list' %}
+                                                        <td>
+                                                            <table class="nested-table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        {% for sub_sub_key in sub_value[0].keys() %}
+                                                                            <th>{{ sub_sub_key }}</th>
+                                                                        {% endfor %}
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {% for item in sub_value %}
+                                                                        <tr>
+                                                                            {% for sub_sub_key, sub_sub_value in item.items() %}
+                                                                                <td>{{ sub_sub_value | safe }}</td>
+                                                                            {% endfor %}
+                                                                        </tr>
+                                                                    {% endfor %}
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    {% endif %}
+                                                {% else %}
+                                                    <td>{{ sub_value | safe }}</td>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </tr>
+                                    </tbody>
+                                </table>
+        </td>
+                    </tr>
+                {% elif value.__class__.__name__ == 'list' %}
+    {% if value|length > 0 %}
+        {% if value[0] is mapping %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>
+                    <table class="nested-table">
+                        <thead>
+                            <tr>
+                                {% for sub_key in value[0].keys() %}
+                                    <th>{{ sub_key }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in value %}
+                                <tr>
+                                    {% for sub_key, sub_value in item.items() %}
+                                        <td>{{ sub_value | safe}}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>
+                    <table class="nested-table">
+                        <tbody>
+                            {% for item in value %}
+                                <tr>
+                                    <td>{{ item }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        {% endif %}
+    {% else %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>No data available</td>
+        </tr>
+    {% endif %}
+{% endif %}
+{% else %}
+    <tr>
+        <td>{{ key }}</td>
+        <td>{{ value | safe}}</td>
+    </tr>
+{% endif %}
+{% endfor %}
+</tbody>
+</table>
+
+<script>
+    const filterInput = document.getElementById('filter-input');
+    const dataTable = document.getElementById('data-table');
+
+    filterInput.addEventListener('input', (e) => {
+        const filterValue = e.target.value.toLowerCase();
+        const rows = dataTable.rows;
+
+        for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            const textContent = row.textContent.toLowerCase();
+
+            if (textContent.includes(filterValue)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        }
+    });
+
+    // Highlight rows with specific keywords
+    // Highlight specific values
+const keywords = ['Failed', 'Failure', 'Fail', 'Error', 'Warning'];
+const tableCells = document.querySelectorAll('#data-table td');
+
+tableCells.forEach((cell) => {
+    const textContent = cell.textContent;
+
+    keywords.forEach((keyword) => {
+        if (textContent.includes(keyword)) {
+            const regex = new RegExp(`(${keyword})`, 'gi');
+            cell.innerHTML = cell.innerHTML.replace(regex, `<span class="highlight">$1</span>`);
+        }
+    });
+});
+</script>
+
+</body>
+</html>

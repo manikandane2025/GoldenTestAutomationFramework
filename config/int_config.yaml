@@ -1,0 +1,39 @@
+# int_config.yaml
+
+# Kafka related configurations
+kafka:
+  kafka_host: "int-kafka-host"
+  kafka_topic: "int-kafka-topic"
+  kafka_group_id: "int-consumer-group"
+  kafka_auto_offset_reset: "earliest"
+  kafka_enable_auto_commit: true
+  sasl_mechanism: "PLAIN"
+  sasl_plain_username: "int-username"  # INT-specific username
+  sasl_plain_password: ""  # Leave empty if Vault or another mechanism is used for token
+  security_protocol: "SASL_PLAINTEXT"
+
+# HashiCorp Vault usage
+vault:
+  use_hashicorp_vault: "Yes"  # Using Vault for fetching secrets
+  vault_token: "int-vault-token"       # Vault token for INT environment
+  vault_url: "http://vault.int.example.com" # Vault URL for INT environment
+  vault_secret_path: "path/to/kafka/int/token" # Path to the Kafka token secret in Vault
+
+# Databricks configurations
+databricks:
+  databricks_token: "int-databricks-token"
+  databricks_host: "int-databricks-host"
+
+# ADLS configurations
+adls:
+  adls_account: "int-adls-account"
+  adls_container: "int-adls-container"
+  adls_path: "int/adls/path"
+  adls_account_url: https://<your-adls-account-name>.dfs.core.windows.net
+
+# Splunk configuration for logging
+splunk:
+  enabled: true
+  url: "https://splunk-int.example.com"
+  token: "splunk-int-token"
+  index: "int-test-results"

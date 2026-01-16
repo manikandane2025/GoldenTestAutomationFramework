@@ -1,0 +1,47 @@
+<thead>
+    <tr><th>Field</th><th>Value</th></tr>
+</thead>
+<tbody>
+    {% for sub_key, sub_value in value.items() %}
+        <tr>
+            <td>{{ sub_key }}</td>
+            <td>
+                {% if sub_value is iterable and not sub_value is string %}
+                    {% if sub_value is mapping %}
+                        <table class="nested-table">
+                            {% include 'nested_table.html' %}
+                        </table>
+                    {% else %}
+                        <table class="nested-table">
+                            <thead>
+                                <tr><th>Field</th><th>Value</th></tr>
+                            </thead>
+                            <tbody>
+                                {% for item in sub_value %}
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            {% if item is iterable and not item is string %}
+                                                {% if item is mapping %}
+                                                    <table class="nested-table">
+                                                        {% include 'nested_table.html' %}
+                                                    </table>
+                                                {% else %}
+                                                    {{ item }}
+                                                {% endif %}
+                                            {% else %}
+                                                {{ item }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                {% else %}
+                    {{ sub_value }}
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+</tbody>

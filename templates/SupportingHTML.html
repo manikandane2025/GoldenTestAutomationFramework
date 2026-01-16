@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Report</title>
+    <style>
+        /* General body and page styling */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f9; /* Light grayish-blue background */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: #2c3e50; /* Dark blue-gray for heading */
+            border-bottom: 2px solid #bdc3c7; /* Light gray border */
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Container for the JSON report */
+        #jsonReportContainer {
+            background-color: #ffffff; /* White background for content */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Softer shadow */
+            overflow-x: auto; /* Allow horizontal scrolling for very wide tables */
+        }
+
+        /* Base table styling for objects */
+        table.json-object-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0; /* Lighter border */
+            border-radius: 4px; /* Rounded corners for tables */
+            overflow: hidden; /* Ensures border-radius clips content */
+        }
+
+        table.json-object-table td {
+            padding: 10px 15px; /* Increased padding */
+            border: 1px solid #e0e0e0;
+            vertical-align: top;
+            font-size: 0.9em;
+        }
+
+        /* Key cell styling */
+        td.json-key {
+            font-weight: 600; /* Semi-bold */
+            color: #34495e; /* Darker blue-gray for keys */
+            background-color: #f8f9fa; /* Very light gray for key cells */
+            width: 25%; /* Adjusted width for keys */
+            white-space: nowrap;
+        }
+
+        /* Value cell styling */
+        td.json-value {
+            word-break: break-all; /* Break long strings */
+        }
+
+        /* Alternating row colors for readability */
+        table.json-object-table tr:nth-child(even) td {
+            background-color: #fdfdfd; /* Slightly off-white for even rows */
+        }
+        table.json-object-table tr:nth-child(odd) td {
+            background-color: #ffffff;
+        }
+         table.json-object-table tr:hover td {
+            background-color: #e9ecef; /* Light hover effect */
+        }
+
+
+        /* Styling for nested tables to distinguish them */
+        td.json-value table.json-object-table {
+            margin-top: 8px;
+            margin-bottom: 8px;
+            border-width: 1px;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05); /* Inner shadow for nested tables */
+            border-radius: 4px;
+        }
+
+        td.json-value table.json-object-table td.json-key {
+            width: 30%; /* Slightly different width for nested keys */
+            background-color: #e9ecef; /* Lighter gray for nested keys */
+        }
+
+        /* Styling for arrays of primitive values (e.g., list of strings) */
+        ul.json-array-list-primitive {
+            list-style-type: disc;
+            margin-left: 0;
+            padding-left: 25px; /* Indent list */
+        }
+
+        ul.json-array-list-primitive li {
+            padding: 4px 0;
+            font-size: 0.9em;
+        }
+
+        /* Styling for containers of arrays with complex items (objects/arrays) */
+        div.json-array-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Space between array items */
+        }
+
+        div.json-array-item {
+            border: 1px solid #d1d8dd; /* Dashed border for array items */
+            padding: 12px;
+            border-radius: 4px;
+            background-color: #fbfcfd; /* Slightly different background for array items */
+        }
+
+        div.json-array-item table.json-object-table {
+            margin-bottom: 0; /* No extra margin if table is the only content in an array item */
+        }
+
+        /* Specific styling for "Pass" / "Fail" results */
+        .result-pass {
+            color: #27ae60; /* Green for Pass */
+            font-weight: bold;
+        }
+
+        .result-fail {
+            color: #c0392b; /* Red for Fail */
+            font-weight: bold;
+        }
+
+        /* Null value styling */
+        .value-null {
+            color: #7f8c8d; /* Gray for null values */
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>JSON Report</h1>
+    <div id="jsonReportContainer">
+        <p>Loading report...</p>
+    </div>
+
+    <!--
+        IMPORTANT FOR JINJA INTEGRATION:
+        Replace the example 'const jsonData = { ... }' below with your actual data.
+        When using with Jinja, you would typically do something like:
+        <script>
+            const jsonData = {{ your_json_data_variable | tojson | safe }};
+        <\/script>
+        Make sure 'your_json_data_variable' is passed from Python to your Jinja template
+        and is properly JSON serialized.
+    -->
+    <script id="jsonDataScript">
+        // --- BEGIN DATA INJECTION POINT ---
+        // For standalone testing, paste your JSON data here or assign it from a file.
+        // This is a placeholder. You will replace this with your actual JSON data.
+        const jsonData = {
+            "reportTitle": "Sample Report (Placeholder)",
+            "status": "Pending Data",
+            "message": "Replace this object with your actual JSON data. See comments above for Jinja integration or load data dynamically.",
+            "sampleStructure": {
+                "name": "Test User",
+                "id": 12345,
+                "isActive": true,
+                "roles": ["admin", "editor"],
+                "preferences": null,
+                "address": {
+                    "street": "123 Main St",
+                    "city": "Anytown"
+                },
+                "history": [
+                    {"action": "login", "timestamp": "2023-01-01T10:00:00Z"},
+                    {"action": "update_profile", "timestamp": "2023-01-01T10:05:00Z"}
+                ]
+            }
+        };
+        // --- END DATA INJECTION POINT ---
+    </script>
+
+    <script>
+        /**
+         * Main function to render the JSON data into the specified container.
+         * @param {object} data The JSON data object.
+         * @param {HTMLElement} container The HTML element to render the report into.
+         */
+        function renderJsonReport(data, container) {
+            if (!data || typeof data !== 'object') {
+                container.innerHTML = '<p style="color: red;">Error: Invalid or empty JSON data provided.</p>';
+                console.error("Invalid or empty JSON data provided:", data);
+                return;
+            }
+            container.innerHTML = ''; // Clear previous content (e.g., "Loading report...")
+            const reportElement = buildElementForValue(data);
+            container.appendChild(reportElement);
+        }
+
+        /**
+         * Recursively builds HTML elements based on the type of the JSON value.
+         * @param {*} value The JSON value to render (can be object, array, string, number, boolean, null).
+         * @returns {Node} The HTML Node representing the value.
+         */
+        function buildElementForValue(value) {
+            if (value === null || typeof value === 'undefined') {
+                const span = document.createElement('span');
+                span.className = 'value-null';
+                span.textContent = 'null';
+                return span;
+            }
+            if (Array.isArray(value)) {
+                return buildTableForArray(value);
+            }
+            if (typeof value === 'object') {
+                return buildTableForObject(value);
+            }
+            // Primitives (string, number, boolean)
+            return document.createTextNode(String(value));
+        }
+
+        /**
+         * Builds an HTML table for a JSON object.
+         * @param {object} obj The JSON object.
+         * @returns {HTMLTableElement} The HTML table element.
+         */
+        function buildTableForObject(obj) {
+            const table = document.createElement('table');
+            table.className = 'json-object-table';
+
+            const tbody = document.createElement('tbody');
+            for (const key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    const tr = document.createElement('tr');
+
+                    const tdKey = document.createElement('td');
+                    tdKey.className = 'json-key';
+                    tdKey.textContent = key;
+                    tr.appendChild(tdKey);
+
+                    const tdValue = document.createElement('td');
+                    tdValue.className = 'json-value';
+
+                    const value = obj[key];
+                    let valueElement = buildElementForValue(value);
+
+                    // Special styling for 'result' key based on its value
+                    if (key === 'result' && (String(value).toLowerCase() === 'pass' || String(value).toLowerCase() === 'fail')) {
+                        const span = document.createElement('span');
+                        span.className = String(value).toLowerCase() === 'pass' ? 'result-pass' : 'result-fail';
+                        // If valueElement is already a text node, we can wrap it.
+                        // If it's complex (another table/list), this specific styling might not apply directly to the text.
+                        // Assuming 'result' values are simple strings.
+                        span.textContent = String(value);
+                        tdValue.appendChild(span);
+                    } else {
+                        tdValue.appendChild(valueElement);
+                    }
+                    tr.appendChild(tdValue);
+
+                    tbody.appendChild(tr);
+                }
+            }
+            if (tbody.childNodes.length === 0) {
+                const tr = document.createElement('tr');
+                const td = document.createElement('td');
+                td.colSpan = 2;
+                td.textContent = '{} (Empty Object)';
+                td.style.textAlign = 'center';
+                td.style.fontStyle = 'italic';
+                td.style.color = '#7f8c8d';
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+            }
+            table.appendChild(tbody);
+            return table;
+        }
+
+        /**
+         * Builds an HTML representation for a JSON array.
+         * Can be a simple list for primitives or a container for complex items.
+         * @param {Array} arr The JSON array.
+         * @returns {Node} An HTMLUListElement or HTMLDivElement.
+         */
+        function buildTableForArray(arr) {
+            if (arr.length === 0) {
+                const span = document.createElement('span');
+                span.className = 'value-null'; // Use similar styling for empty
+                span.textContent = '[] (Empty List)';
+                return span;
+            }
+
+            // Check if all items are simple primitives (not objects or arrays)
+            const allPrimitives = arr.every(item =>
+                item === null || typeof item === 'undefined' ||
+                (typeof item !== 'object' && !Array.isArray(item))
+            );
+
+            if (allPrimitives) {
+                const ul = document.createElement('ul');
+                ul.className = 'json-array-list-primitive';
+                arr.forEach(item => {
+                    const li = document.createElement('li');
+                    li.appendChild(buildElementForValue(item)); // buildElementForValue handles primitives and null
+                    ul.appendChild(li);
+                });
+                return ul;
+            } else {
+                // Array of objects, arrays, or mixed content.
+                const divContainer = document.createElement('div');
+                divContainer.className = 'json-array-container';
+                arr.forEach((item) => {
+                    const itemContainer = document.createElement('div');
+                    itemContainer.className = 'json-array-item';
+                    itemContainer.appendChild(buildElementForValue(item));
+                    divContainer.appendChild(itemContainer);
+                });
+                return divContainer;
+            }
+        }
+
+        // Event listener to render the report once the DOM is fully loaded.
+        document.addEventListener('DOMContentLoaded', function() {
+            const reportContainer = document.getElementById('jsonReportContainer');
+            // jsonData is expected to be defined globally, typically from the <script id="jsonDataScript">
+            if (typeof jsonData !== 'undefined' && reportContainer) {
+                renderJsonReport(jsonData, reportContainer);
+            } else {
+                if (reportContainer) {
+                    reportContainer.innerHTML = '<p style="color: red;">Error: JSON data is not defined or the report container was not found.</p>';
+                }
+                console.error("JSON data is not defined or the report container (#jsonReportContainer) was not found.");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+# AUT_Config.yaml
+environment:
+  dev:
+    kafka_host: "dev-kafka-host"
+    kafka_topic: "dev-kafka-topic"
+    databricks_token: "dev-token"
+    databricks_host: "dev-databricks-host"
+    adls_account: "dev-adls-account"
+    use_hashicorp_vault: "No"
+
+  INT:
+    kafka_host: "dev-kafka-host"
+    kafka_topic: "dev-kafka-topic"
+    databricks_token: "dev-token"
+    databricks_host: "dev-databricks-host"
+    adls_account: "dev-adls-account"
+    use_hashicorp_vault: "Yes"
+
+  qa:
+    kafka_host: "qa-kafka-host"
+    kafka_topic: "qa-kafka-topic"
+    databricks_token: "qa-token"
+    databricks_host: "qa-databricks-host"
+    adls_account: "qa-adls-account"
+    use_hashicorp_vault: "Yes"
+  prod:
+    kafka_host: "prod-kafka-host"
+    kafka_topic: "prod-kafka-topic"
+    databricks_token: "prod-token"
+    databricks_host: "prod-databricks-host"
+    adls_account: "prod-adls-account"
+    use_hashicorp_vault: "Yes"
+
+vault:
+  url: "http://vault.example.com"
+  token: "your-vault-token"
+
+splunk/creds:
+  username: "splunk_user"
+  password: "splunk_password"
+
+databricks/creds:
+  token: "databricks-token-value"

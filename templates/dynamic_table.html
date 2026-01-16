@@ -1,0 +1,26 @@
+<thead>
+    <tr>
+        {% for sub_key in value.keys() %}
+            <th>{{ sub_key }}</th>
+        {% endfor %}
+    </tr>
+</thead>
+<tbody>
+    {% for sub_key, sub_value in value.items() %}
+        {% if sub_value is iterable and not sub_value is string %}
+            <tr>
+                <td>{{ sub_key }}</td>
+                <td>
+                    <table class="nested-table">
+                        {% include 'dynamic_table.html' %}
+                    </table>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>{{ sub_key }}</td>
+                <td>{{ sub_value }}</td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+</tbody>

@@ -1,0 +1,29 @@
+framework:
+  parallel_run: true              # Enable parallel test execution
+  max_parallel_jobs: 4            # Max parallel jobs
+  log_level: "INFO"               # Log level
+  log_format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"  # Log format
+  reports_dir: "reports"          # Reports directory
+  behave_format: "json"           # Behave format (JSON)
+  timeout: 60                     # Test timeout in seconds
+
+test_results_archiving:
+  enabled: true                   # Enable archiving
+  destination: "azure_blob"       # Archive destination
+  azure_blob_config:
+    account_name: "your_account_name"
+    account_key: "your_account_key"
+    container_name: "test-reports"
+    upload_path: "test_results"
+    overwrite: false
+
+logging_config:
+  log_file: "test_execution.log"     # Log file for framework logs
+  log_to_console: true               # Log to console
+  log_to_file: true                  # Log to a file
+  log_format: "%(asctime)s - %(levelname)s - %(message)s"
+
+vault_config:
+  use_hashicorp_vault: "Yes"        # Flag to enable Vault
+  vault_url: "http://vault.example.com"  # Vault URL
+  vault_token: "dev-vault-token"  # Vault token (use Vault if set to Yes)

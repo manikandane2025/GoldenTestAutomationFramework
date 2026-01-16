@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Test Execution Report</title>
+      <style>
+         body {
+         font-family: 'Arial', sans-serif;
+         background-color: #f7f7f7;
+         color: #333;
+         margin: 0;
+         padding: 20px;
+         font-size: 0.8rem; /* Smaller font size */
+         }
+         .container {
+         max-width: 1200px; /* Adjust width for larger screens */
+         width: 100%; /* Make it responsive */
+         margin: 0 auto;
+         background-color: #fff;
+         padding: 10px; /* Reduced padding */
+         border-radius: 8px;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+         }
+         h1 {
+         text-align: center;
+         color: #78be20;
+         font-size: 1.2rem; /* Adjust heading size */
+         margin-bottom: 10px;
+         }
+         h2 {
+         text-align: left;
+         color: #0056b3;
+         font-size: 0.75rem; /* Adjust heading size */
+         }
+         .count-summary {
+         display: flex;
+         justify-content: space-between;
+         background-color: #f0f8ff;
+         padding: 6px; /* Reduced padding */
+         border-radius: 6px;
+         margin-bottom: 15px;
+         font-size: 0.75rem; /* Smaller font size */
+         }
+         .count-summary div {
+         width: 30%;
+         }
+         .count-summary div p {
+         margin: 2px 0; /* Reduced margin */
+         }
+         .count-summary div span {
+         font-weight: bold;
+         color: #0056b3;
+         }
+         .charts-container {
+         display: flex;
+         justify-content: space-between;
+         margin-top: 20px;
+         margin-bottom: 30px; /* Add space below the charts */
+         }
+         .pie-chart-container {
+         width: 45%; /* Adjust width for two charts side by side */
+         text-align: center;
+         border: 2px solid #000; /* Add border for visibility */
+         padding: 10px; /* Ensure there's some padding for better visibility */
+         }
+         .pie-chart-container h2 {
+         font-size: 1rem;
+         margin-bottom: 10px;
+         color: #0056b3;
+         }
+         .feature, .scenario {
+         background-color: #f9f9f9;
+         margin-bottom: 5px;
+         padding: 5px;
+         border-radius: 6px;
+         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+         cursor: pointer;
+         transition: background-color 0.3s ease;
+         font-size: 0.75rem; /* Smaller font size */
+         }
+         .feature:hover, .scenario:hover {
+         background-color: #e6f0ff;
+         }
+         .feature.passed, .scenario.passed {
+         background-color: #e8f5e9;
+         border-left: 5px solid #4caf50;
+         }
+         .feature.failed {
+         background-color: #ff6f6f; /* Mild red background for failed status */
+         border-left: 5px solid #f44336; /* Bright red border */
+         }
+         .scenario.failed {
+         background-color: #FF8A8A; /* Mild red background for failed status */
+         border-left: 5px solid #f44336; /* Bright red border */
+         }
+         .feature.skipped, .scenario.skipped {
+         background-color: #fff8e1;
+         border-left: 5px solid #ffeb3b;
+         }
+         .feature.error, .scenario.error {
+         background-color: #fff3e0;
+         border-left: 5px solid #ff9800;
+         }
+         .status {
+         font-weight: bold;
+         font-size: 0.75rem; /* Smaller font size */
+         color: #4caf50;
+         }
+         .expand-icon {
+         font-size: 12px;
+         cursor: pointer;
+         color: #333;
+         transition: transform 0.3s ease;
+         }
+         .expand-icon:before {
+         content: "\25BC"; /* Down arrow */
+         }
+         .collapsed .expand-icon:before {
+         content: "\25B6"; /* Right arrow */
+         }
+         .tags {
+         margin-top: 5px;
+         font-size: 0.7rem; /* Smaller font size */
+         color: #666;
+         }
+         .tag {
+         display: inline-block;
+         background-color: #e0e0e0;
+         padding: 3px 6px;
+         margin-right: 6px;
+         margin-bottom: 5px;
+         border-radius: 12px;
+         }
+         /* Steps Table Styling (White with black borders) */
+         table {
+         width: 100%;
+         border-collapse: collapse;
+         margin-top: 5px;
+         font-size: 0.75rem; /* Adjusted font size */
+         background-color: white; /* White background for the table */
+         }
+         th, td {
+         padding: 6px; /* Mild padding */
+         text-align: left;
+         border: 1px solid #000; /* Black borders around the table */
+         }
+         th {
+         background-color: #e3f2fd; /* Mild blue header */
+         color: #0056b3; /* Blue text for header */
+         }
+         tr:nth-child(even) {
+         background-color: #f9f9f9; /* Light background for even rows */
+         }
+         tr:hover {
+         background-color: #eaf5ff; /* Slightly lighter on hover */
+         }
+         /* Set specific width for the Step Name column */
+         th:nth-child(2), td:nth-child(2) {
+         width: 300px; /* Adjust this value to your desired width */
+         word-wrap: break-word; /* Ensure text wraps within the cell */
+         }
+         .hidden {
+         display: none;
+         }
+         .collapsed .expand-icon {
+         transform: rotate(90deg);
+         }
+         /* Style for the tooltip */
+         .chart-tooltip {
+         position: absolute;
+         background-color: rgba(0, 0, 0, 0.7);
+         color: white;
+         padding: 4px 8px;
+         border-radius: 4px;
+         display: none;
+         pointer-events: none;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="container">
+         <h1>Test Execution Report</h1>
+         <!-- Summary Information -->
+         <table class="summary-info">
+            <style>
+               body {
+               font-family: 'Arial', sans-serif;
+               background-color: #f7f7f7;
+               color: #333;
+               margin: 0;
+               padding: 20px;
+               font-size: 1rem;
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+               width: 100%;
+               overflow-x: hidden;
+               }
+               .container {
+               max-width: 100%;
+               width: 98%;
+               margin: 0 auto;
+               background-color: #fff;
+               padding: 20px;
+               border-radius: 8px;
+               box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+               }
+               .scrollable-table {
+               width: 100%;
+               overflow-x: auto;
+               margin-bottom: 20px;
+               }
+               .scrollable-table table {
+               font-size: 1rem;
+               table-layout: auto;
+               min-width: 100%;
+               border-collapse: collapse;
+               background-color: white;
+               }
+               .scrollable-table th, .scrollable-table td {
+               word-wrap: break-word;
+               overflow-wrap: break-word;
+               padding: 10px;
+               text-align: left;
+               border: 1px solid #000;
+               min-width: 150px;
+               }
+               th {
+               background-color: #e3f2fd;
+               color: #0056b3;
+               }
+               tr:nth-child(even) {
+               background-color: #f9f9f9;
+               }
+               tr:hover {
+               background-color: #eaf5ff;
+               }
+               .chart-tooltip {
+               position: absolute;
+               background-color: rgba(0, 0, 0, 0.7);
+               color: white;
+               padding: 6px 10px;
+               border-radius: 4px;
+               display: none;
+               pointer-events: none;
+               }
+            </style>
+            <tr>
+               <td><strong>Owner:</strong></td>
+               <td><span style="color: #78be20;">Humana</span></td>
+            </tr>
+            <tr>
+               <td><strong>Project Name:</strong></td>
+               <td>{{ project_name }}</td>
+            </tr>
+            <tr>
+               <td><strong>Report Generated On:</strong></td>
+               <td>{{ report_generated_date }}</td>
+            </tr>
+            <tr>
+               <td><strong>Test Execution Start Date:</strong></td>
+               <td>{{ test_execution_start_date }}</td>
+            </tr>
+            <tr>
+               <td><strong>Test Execution End Date:</strong></td>
+               <td>{{ test_execution_end_date }}</td>
+            </tr>
+            <tr>
+               <td><strong>Test Execution Duration</strong></td>
+               <td>{{ test_execution_duration }}</td>
+            </tr>
+            <tr>
+               <td><strong>Test Environment</strong></td>
+               <td>{{ test_environment }}</td>
+            </tr>
+         </table>
+         <!-- Test Execution Overview -->
+         <table class="count-summary">
+            <tr>
+               <td><strong>Total Features:</strong></td>
+               <td>{{ features_count }}</td>
+            </tr>
+            <tr>
+               <td><strong>Total Scenarios:</strong></td>
+               <td>{{ scenarios_count }}</td>
+            </tr>
+            <tr>
+               <td><strong>Feature Status:</strong></td>
+               <td>Passed: {{ passed_features }}, Failed: {{ failed_features }}, Skipped: {{ skipped_features }}, Error: {{ error_features }}</td>
+            </tr>
+            <tr>
+               <td><strong>Scenario Status:</strong></td>
+               <td>Passed: {{ passed_scenarios }}, Failed: {{ failed_scenarios }}, Skipped: {{ skipped_scenarios }}, Error: {{ error_scenarios }}</td>
+            </tr>
+         </table>
+         <!-- Charts for Feature and Scenario Status Summary -->
+         <div class="charts-container">
+            <div class="pie-chart-container">
+               <h2>Feature Status Summary</h2>
+               <canvas id="statusChart" width="200" height="200"></canvas>
+            </div>
+            <div class="pie-chart-container">
+               <h2>Scenario Status Summary</h2>
+               <canvas id="scenarioChart" width="200" height="200"></canvas>
+            </div>
+         </div>
+         <div class="filter-container">
+            <label for="statusFilter">Filter by Status:</label>
+            <select id="statusFilter" onchange="applyStatusFilter()">
+               <option value="all">All</option>
+               <option value="passed">Passed</option>
+               <option value="failed">Failed</option>
+               <option value="skipped">Skipped</option>
+               <option value="errored">Errored</option>
+            </select>
+         </div>
+         <div style="padding-bottom: 20px;"></div>
+         <!-- Features and Scenarios Details -->
+         {% for feature in features %}
+         <div class="feature {{ feature.status }} {{ 'collapsed' if not feature.opened }}">
+            <h2>
+               {{ feature.name }} - Status: {{ feature.status | capitalize }}
+               <span class="expand-icon"></span>
+            </h2>
+            <p>Location: {{ feature.location }}</p>
+            {% if feature.tags %}
+            <div class="tags">
+               {% for tag in feature.tags %}
+               <span class="tag">{{ tag }}</span>
+               {% endfor %}
+            </div>
+            {% endif %}
+            <div class="scenarios hidden">
+               {% for scenario in feature.scenarios %}
+               <div class="scenario {{ scenario.status }} {{ 'collapsed' if not scenario.opened }}">
+                  {% if scenario.scenario_tags %}
+                  <div class="tags">
+                     {% for tag in scenario.scenario_tags %}
+                     <span class="tag">{{ tag }}</span>
+                     {% endfor %}
+                  </div>
+                  {% endif %}
+                  <h3>
+                     {{ scenario.name }} - Status: {{ scenario.status | capitalize }}
+                     <span class="expand-icon"></span>
+                  </h3>
+                  <p>
+                     Start Time: <span class="start-time">{{ scenario.start_time }}</span> |
+                     End Time: <span class="end-time">{{ scenario.end_time }}</span> |
+                     Duration: <span class="Scenario_duration">{{ scenario.Scenario_duration }}</span>
+                  </p>
+                  <h4>Steps:</h4>
+                  <table>
+                     <thead>
+                        <tr>
+                           <th>Keyword</th>
+                           <th>Step Name</th>
+                           <th>Result</th>
+                           <th>Duration</th>
+                           <th>Failure Reason</th>
+                           <th>Expans/Collapse</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {% for step in scenario.steps %}
+                        <tr class="{{ step.result.status | lower }}" data-step="true">
+                           <td>{{ step.keyword }}</td>
+                           <td>{{ step.name }}</td>
+                           <td>{{ step.result.status }}</td>
+                           <td data-duration="{{ step.result.duration }}">{{ step.result.duration }}</td>
+                           <td>
+                              {{ step.failure_reason if step.result.status == "failed" else "N/A" }}
+                           </td>
+                           <td>
+                              <div style="margin-top: 2px;">
+                                 <button class="collapsible" style="padding: 5px 10px;">+</button>
+                              </div>
+                           </td>
+                        </tr>
+
+                        {% if step.test_data and step.test_data is mapping %}
+                        <tr class="test-data-row hidden">
+                           <td colspan="5">
+                              <style>
+                                 table#data-table {
+                                 border-collapse: collapse;
+                                 width: 100%;
+                                 }
+                                 table#data-table th {
+                                 border: 1px solid #ddd;
+                                 padding: 10px;
+                                 text-align: left;
+                                 }
+                                 table#data-table td {
+                                 border: 1px solid #ddd;
+                                 padding: 10px;
+                                 text-align: left;
+                                 }
+                                 .nested-table {
+                                 border-collapse: collapse;
+                                 width: 100%;
+                                 }
+                                 .nested-table th {
+                                 border: 1px solid #ddd;
+                                 padding: 5px;
+                                 text-align: left;
+                                 }
+                                 .nested-table td {
+                                 border: 1px solid #ddd;
+                                 padding: 5px;
+                                 text-align: left;
+                                 }
+                              </style>
+                              <div style="overflow-x: auto; overflow-y: auto; width: 100%; height: 100%;">
+                              <table id="data-table" style="width: 100%; height: 100%; table-layout: fixed; border-collapse: collapse;">
+                                 <thead>
+                                    <tr>
+                                       <th style="width: 5%;">Field</th>
+                                       <th style="width: 95%;">Value</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    {% for key, value in step.test_data.items() %}
+                                    {% if value is iterable and not value is string %}
+                                    {% if value is mapping %}
+                                    <tr>
+                                       <td>{{ key }}</td>
+                                       <td>
+                                          <table class="nested-table">
+                                             <thead>
+                                                <tr>
+                                                   {% for sub_key in value.keys() %}
+                                                   <th>{{ sub_key }}</th>
+                                                   {% endfor %}
+                                                </tr>
+                                             </thead>
+                                             <tbody>
+                                                <tr>
+                                                   {% for sub_key, sub_value in value.items() %}
+                                                   {% if sub_value is iterable and not sub_value is string %}
+                                                   {% if sub_value is mapping %}
+                                                   <td>
+                                                      <table class="nested-table">
+                                                         <thead>
+                                                            <tr>
+                                                               {% for sub_sub_key in sub_value.keys() %}
+                                                               <th>{{ sub_sub_key }}</th>
+                                                               {% endfor %}
+                                                            </tr>
+                                                         </thead>
+                                                         <tbody>
+                                                            <tr>
+                                                               {% for sub_sub_key, sub_sub_value in sub_value.items() %}
+                                                               <td>{{ sub_sub_value | safe }}</td>
+                                                               {% endfor %}
+                                                            </tr>
+                                                         </tbody>
+                                                      </table>
+                                                   </td>
+                                                   {% elif sub_value.__class__.__name__ == 'list' %}
+                                                   <td>
+                                                      <table class="nested-table">
+                                                         <thead>
+                                                            <tr>
+                                                               {% for sub_sub_key in sub_value[0].keys() %}
+                                                               <th>{{ sub_sub_key }}</th>
+                                                               {% endfor %}
+                                                            </tr>
+                                                         </thead>
+                                                         <tbody>
+                                                            {% for item in sub_value %}
+                                                            <tr>
+                                                               {% for sub_sub_key, sub_sub_value in item.items() %}
+                                                               <td>{{ sub_sub_value | safe }}</td>
+                                                               {% endfor %}
+                                                            </tr>
+                                                            {% endfor %}
+                                                         </tbody>
+                                                      </table>
+                                                   </td>
+                                                   {% endif %}
+                                                   {% else %}
+                                                   <td>{{ sub_value | safe }}</td>
+                                                   {% endif %}
+                                                   {% endfor %}
+                                                </tr>
+                                             </tbody>
+                                          </table>
+                                       </td>
+                                    </tr>
+                                    {% elif value.__class__.__name__ == 'list' %}
+                                    {% if value|length > 0 %}
+                                    {% if value[0] is mapping %}
+                                    <tr>
+                                       <td>{{ key }}</td>
+                                       <td>
+                                          <table class="nested-table">
+                                             <thead>
+                                                <tr>
+                                                   {% for sub_key in value[0].keys() %}
+                                                   <th>{{ sub_key }}</th>
+                                                   {% endfor %}
+                                                </tr>
+                                             </thead>
+                                             <tbody>
+                                                {% for item in value %}
+                                                <tr>
+                                                   {% for sub_key, sub_value in item.items() %}
+                                                   <td>{{ sub_value | safe }}</td>
+                                                   {% endfor %}
+                                                </tr>
+                                                {% endfor %}
+                                             </tbody>
+                                          </table>
+                                       </td>
+                                    </tr>
+                                    {% else %}
+                                    <tr>
+                                       <td>{{ key }}</td>
+                                       <td>
+                                          <table class="nested-table">
+                                             <tbody>
+                                                {% for item in value %}
+                                                <tr>
+                                                   <td>{{ item }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                             </tbody>
+                                          </table>
+                                       </td>
+                                    </tr>
+                                    {% endif %}
+                                    {% else %}
+                                    <tr>
+                                       <td>{{ key }}</td>
+                                       <td>No data available</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% else %}
+                                    <tr>
+                                       <td>{{ key }}</td>
+                                       <td>{{ value | safe }}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                 </tbody>
+                              </table>
+                              </div>
+                           </td>
+                        </tr>
+                        {% endif %}
+                        {% if step.test_output_data and step.test_output_data is mapping %}
+                        <tr class="test-output-row hidden">
+                           <td colspan="5">
+                              <style>
+                                 table#output-data-table {
+                                 border-collapse: collapse;
+                                 width: 100%;
+                                 }
+                                 table#output-data-table th {
+                                 border: 1px solid #ddd;
+                                 padding: 10px;
+                                 text-align: left;
+                                 }
+                                 table#output-data-table td {
+                                 border: 1px solid #ddd;
+                                 padding: 10px;
+                                 text-align: left;
+                                 }
+                                 .nested-table {
+                                 border-collapse: collapse;
+                                 width: 100%;
+                                 }
+                                 .nested-table th {
+                                 border: 1px solid #ddd;
+                                 padding: 5px;
+                                 text-align: left;
+                                 }
+                                 .nested-table td {
+                                 border: 1px solid #ddd;
+                                 padding: 5px;
+                                 text-align: left;
+                                 }
+                              </style>
+                              <div style="overflow-x: auto; overflow-y: auto; width: 100%; height: 100%;">
+  <table id="output-data-table" style="width: 100%; height: 100%; table-layout: fixed; border-collapse: collapse;">
+    <colgroup>
+      <col style="width: 100%;" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 5%;">Field</th>
+        <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 95%;">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for key, value in step.test_output_data.items() %}
+        {% if value is iterable and not value is string %}
+          {% if value is mapping %}
+            <tr>
+              <td>{{ key }}</td>
+              <td>
+                <table class="nested-table" style="width: 100%;">
+                  <thead>
+                    <tr>
+                      {% for sub_key in value.keys() %}
+                        <th>{{ sub_key }}</th>
+                      {% endfor %}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      {% for sub_key, sub_value in value.items() %}
+                        {% if sub_value is iterable and not sub_value is string %}
+                          {% if sub_value is mapping %}
+                            <td>
+                              <table class="nested-table" style="width: 100%;">
+                                <thead>
+                                  <tr>
+                                    {% for sub_sub_key in sub_value.keys() %}
+                                      <th>{{ sub_sub_key }}</th>
+                                    {% endfor %}
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    {% for sub_sub_key, sub_sub_value in sub_value.items() %}
+                                      <td>{{ sub_sub_value | safe }}</td>
+                                    {% endfor %}
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          {% elif sub_value.__class__.__name__ == 'list' %}
+                            <td>
+                              <table class="nested-table" style="width: 100%;">
+                                <thead>
+                                  <tr>
+                                    {% for sub_sub_key in sub_value[0].keys() %}
+                                      <th>{{ sub_sub_key }}</th>
+                                    {% endfor %}
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for item in sub_value %}
+                                    <tr>
+                                      {% for sub_sub_key, sub_sub_value in item.items() %}
+                                        <td>{{ sub_sub_value | safe }}</td>
+                                      {% endfor %}
+                                    </tr>
+                                  {% endfor %}
+                                </tbody>
+                              </table>
+                            </td>
+                          {% endif %}
+                        {% else %}
+                          <td>{{ sub_value | safe }}</td>
+                        {% endif %}
+                      {% endfor %}
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          {% elif value.__class__.__name__ == 'list' %}
+            {% if value|length > 0 %}
+              {% if value[0] is mapping %}
+                <tr>
+                  <td>{{ key }}</td>
+                  <td>
+                    <table class="nested-table" style="width: 100%;">
+                      <thead>
+                        <tr>
+                          {% for sub_key in value[0].keys() %}
+                            <th>{{ sub_key }}</th>
+                          {% endfor %}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for item in value %}
+                          <tr>
+                            {% for sub_key, sub_value in item.items() %}
+                              <td>{{ sub_value | safe }}</td>
+                            {% endfor %}
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              {% else %}
+                <tr>
+                  <td>{{ key }}</td>
+                  <td>
+                    <table class="nested-table" style="width: 100%;">
+                      <tbody>
+                        {% for item in value %}
+                          <tr>
+                            <td>{{ item }}</td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              {% endif %}
+            {% else %}
+              <tr>
+                <td>{{ key }}</td>
+                <td>No data available</td>
+              </tr>
+            {% endif %}
+          {% endif %}
+        {% else %}
+          <tr>
+            <td>{{ key }}</td>
+            <td>{{ value | safe }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+                           </td>
+                        </tr>
+                        {% endif %}
+
+                        {% if step.table and step.table is mapping %}
+  <tr class="table-row">
+    <td colspan="5">
+      <button class="collapsible">View Table</button>
+      <div class="collapsible-content" style="display: none;">
+        <style>
+          /* existing styles */
+        </style>
+        <div style="overflow-x: auto; overflow-y: auto; width: 100%; height: 100%;">
+          <table id="data_table_bdd" style="width: 100%; height: 100%; table-layout: fixed; border-collapse: collapse;">
+            <colgroup>
+              <col style="width: 100%;" />
+            </colgroup>
+            <thead>
+              <tr>
+                {% for heading in step.table.headings %}
+                  <th>{{ heading }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in step.table.rows %}
+                <tr>
+                  {% for cell in row %}
+                    <td>{{ cell }}</td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </td>
+  </tr>
+{% endif %}
+                        {% endfor %}
+                     </tbody>
+                  </table>
+               </div>
+               {% endfor %}
+            </div>
+         </div>
+         {% endfor %}
+      </div>
+      <!-- Tooltip -->
+      <div class="chart-tooltip" id="chartTooltip"></div>
+      <script>
+         document.addEventListener("DOMContentLoaded", function() {
+             // Feature collapse logic
+             const featureHeaders = document.querySelectorAll('.feature h2');
+             featureHeaders.forEach(function(header) {
+                 header.addEventListener('click', function() {
+                     const feature = header.closest('.feature');
+                     feature.classList.toggle('collapsed');
+                     const scenarios = feature.querySelector('.scenarios');
+                     scenarios.classList.toggle('hidden');
+                     const icon = feature.querySelector('.expand-icon');
+                     icon.classList.toggle('collapsed');
+                 });
+             });
+
+             function filterTable(input, tableId, columnIndex) {
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById(tableId);
+            const rows = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < rows.length; i++) {
+                const cell = rows[i].getElementsByTagName("td")[columnIndex];
+                if (cell) {
+                    const textValue = cell.textContent || cell.innerText;
+                    rows[i].style.display = textValue.toLowerCase().includes(filter) ? "" : "none";
+                }
+            }
+         }
+             // Scenario collapse logic
+             const scenarioHeaders = document.querySelectorAll('.scenario h3');
+             scenarioHeaders.forEach(function(header) {
+                 header.addEventListener('click', function() {
+                     const scenario = header.closest('.scenario');
+                     scenario.classList.toggle('collapsed');
+                     const icon = scenario.querySelector('.expand-icon');
+                     icon.classList.toggle('collapsed');
+                     const steps = scenario.querySelector('table');
+                     steps.classList.toggle('hidden');
+                 });
+             });
+
+             // Step row click logic for expanding test data
+             const stepRows = document.querySelectorAll('tr[data-step="true"]');
+             stepRows.forEach(function(row) {
+                 row.addEventListener('click', function() {
+                     const testDataRow = row.nextElementSibling; // Get the following row (test data row)
+                     const tableRow = testDataRow.nextElementSibling; // Get the table row
+                     if (testDataRow && tableRow) {
+                         testDataRow.classList.toggle('hidden');
+                         tableRow.classList.toggle('hidden');
+                     }
+                 });
+             });
+             const collapsibleButtons = document.querySelectorAll('.collapsible');
+             collapsibleButtons.forEach(function(button) {
+                 button.addEventListener('click', function() {
+                 const content = button.closest('tr').querySelector('.collapsible-content');
+                 content.classList.toggle('hidden');
+             // Optionally, you can change button text to indicate the expanded state
+                 if (content.classList.contains('hidden')) {
+                     button.textContent = "View Table Data";
+                 } else {
+                     button.textContent = "Hide Table Data";
+                 }
+             });
+         });
+             // Format Step Duration
+             function formatStepDuration(duration) {
+                 const roundedDuration = duration.toFixed(2);
+                 const minutes = Math.floor(roundedDuration / 60);
+                 const seconds = roundedDuration % 60;
+                 return `${minutes}m ${seconds}s`;
+             }
+
+             const durationElements = document.querySelectorAll('.duration');
+             durationElements.forEach(function(element) {
+                 const duration = element.getAttribute('data-duration');
+                 element.textContent = formatStepDuration(parseFloat(duration));
+             });
+
+             // Drawing the pie chart with tooltip
+             function drawPieChart(ctx, data, labels, colors) {
+                 const total = data.reduce((sum, value) => sum + value, 0);
+                 const sliceAngles = [];
+                 let startAngle = 0;
+
+                 data.forEach((value) => {
+                     const sliceAngle = (value / total) * 2 * Math.PI;
+                     sliceAngles.push(sliceAngle);
+                     startAngle += sliceAngle;
+                 });
+
+                 let angleStart = 0;
+                 data.forEach((value, index) => {
+                     const sliceAngle = sliceAngles[index];
+                     const angleEnd = angleStart + sliceAngle;
+
+                     ctx.beginPath();
+                     ctx.moveTo(100, 100);
+                     ctx.arc(100, 100, 90, angleStart, angleEnd);
+                     ctx.fillStyle = colors[index];
+                     ctx.fill();
+
+                     angleStart = angleEnd;
+                 });
+
+                 const tooltip = document.getElementById('chartTooltip');
+                 ctx.canvas.addEventListener('mousemove', function(event) {
+                     const mouseX = event.offsetX;
+                     const mouseY = event.offsetY;
+                     const distance = Math.sqrt(Math.pow(mouseX - 100, 2) + Math.pow(mouseY - 100, 2));
+
+                     if (distance < 90) {
+                         tooltip.style.display = 'none';
+                         return;
+                     }
+
+                     const angle = Math.atan2(mouseY - 100, mouseX - 100);
+                     const angleNormalized = angle < 0 ? angle + 2 * Math.PI : angle;
+                     let angleSum = 0;
+
+                     for (let i = 0; i < data.length; i++) {
+                         angleSum += sliceAngles[i];
+                         if (angleNormalized < angleSum) {
+                             const percentage = (data[i] / total * 100).toFixed(2);
+                             tooltip.style.display = 'block';
+                             tooltip.style.left = `${event.pageX + 10}px`;
+                             tooltip.style.top = `${event.pageY + 10}px`;
+                             tooltip.textContent = `${labels[i]}: ${percentage}%`;
+                             break;
+                         }
+                     }
+                 });
+
+                 ctx.canvas.addEventListener('mouseout', function() {
+                     tooltip.style.display = 'none';
+                 });
+             }
+
+             // Setup the chart with feature status data
+             const statusData = [{{ passed_features }}, {{ failed_features }}, {{ skipped_features }}, {{ error_features }}];
+             const statusLabels = ['Passed', 'Failed', 'Skipped', 'Error'];
+             const statusColors = ['#4caf50', '#f44336', '#ffeb3b', '#ff9800'];
+
+             const statusCanvas = document.getElementById('statusChart');
+             const statusCtx = statusCanvas.getContext('2d');
+             drawPieChart(statusCtx, statusData, statusLabels, statusColors);
+
+             // Setup the scenario chart
+             const scenarioData = [{{ passed_scenarios }}, {{ failed_scenarios }}, {{ skipped_scenarios }}, {{ error_scenarios }}];
+             const scenarioLabels = ['Passed', 'Failed', 'Skipped', 'Error'];
+             const scenarioColors = ['#4caf50', '#f44336', '#ffeb3b', '#ff9800'];
+
+             const scenarioCanvas = document.getElementById('scenarioChart');
+             const scenarioCtx = scenarioCanvas.getContext('2d');
+             drawPieChart(scenarioCtx, scenarioData, scenarioLabels, scenarioColors);
+         });
+
+         document.addEventListener("DOMContentLoaded", function() {
+             function drawPieChart(ctx, data, labels, colors) {
+                 const total = data.reduce((sum, value) => sum + value, 0);
+                 let angleStart = 0;
+                 data.forEach((value, index) => {
+                     const sliceAngle = (value / total) * 2 * Math.PI;
+                     ctx.beginPath();
+                     ctx.moveTo(100, 100);
+                     ctx.arc(100, 100, 90, angleStart, angleStart + sliceAngle);
+                     ctx.fillStyle = colors[index];
+                     ctx.fill();
+                     angleStart += sliceAngle;
+                 });
+             }
+         });
+
+         var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+         function applyStatusFilter() {
+         const selectedStatus = document.getElementById("statusFilter").value;
+         const features = document.querySelectorAll(".feature");
+
+         features.forEach(function(feature) {
+             const featureStatus = feature.classList.contains("passed") ? "passed" :
+                                   feature.classList.contains("failed") ? "failed" :
+                                   feature.classList.contains("skipped") ? "skipped" :
+                                   feature.classList.contains("errored") ? "errored" : "all";
+
+             if (selectedStatus === "all" || selectedStatus === featureStatus) {
+                 feature.style.display = "block"; // Show feature
+             } else {
+                 feature.style.display = "none"; // Hide feature
+             }
+
+             // Handle filtering for scenarios within each feature
+             const scenarios = feature.querySelectorAll(".scenario");
+             scenarios.forEach(function(scenario) {
+                 const scenarioStatus = scenario.classList.contains("passed") ? "passed" :
+                                        scenario.classList.contains("failed") ? "failed" :
+                                        scenario.classList.contains("skipped") ? "skipped" :
+                                        scenario.classList.contains("errored") ? "errored" : "all";
+
+                 if (selectedStatus === "all" || selectedStatus === scenarioStatus) {
+                     scenario.style.display = "block"; // Show scenario
+                 } else {
+                     scenario.style.display = "none"; // Hide scenario
+                 }
+
+                 // Handle filtering for steps within each scenario
+                 const steps = scenario.querySelectorAll("tr[data-step='true']");
+                 steps.forEach(function(step) {
+                     const stepResult = step.classList.contains("passed") ? "passed" :
+                                        step.classList.contains("failed") ? "failed" :
+                                        step.classList.contains("skipped") ? "skipped" :
+                                        step.classList.contains("errored") ? "errored" : "all";
+
+                     if (selectedStatus === "all" || selectedStatus === stepResult) {
+                         step.style.display = "table-row"; // Show step
+                     } else {
+                         step.style.display = "none"; // Hide step
+                     }
+                 });
+             });
+         });
+         }
+
+         // Initialize the filter on page load to apply the default value (All)
+         document.addEventListener("DOMContentLoaded", function() {
+         applyStatusFilter();
+         });
+      </script>
+      <style>
+         .test-data-row.expanded {
+         background-color: #f0f8ff;  /* Light blue background for expanded rows */
+         border: 2px solid #5f9ea0;  /* Border color */
+         }
+         /* Hide elements by default when they are filtered out */
+         .feature, .scenario, tr[data-step="true"] {
+         display: block; /* Make sure they are block elements by default */
+         }
+         .hidden {
+         display: none; /* Use this class to hide elements */
+         }
+      </style>
+   </body>
+</html>

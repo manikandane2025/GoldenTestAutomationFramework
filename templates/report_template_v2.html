@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Execution Report</title>
+
+        <style>
+        /* Static CSS from the original template */
+        :root { --tw-ring-color: rgb(59 130 246 / 0.5) }
+        *,::before,::after { box-sizing: border-box; border-width: 0; border-style: solid; border-color: #e5e7eb }
+        ::before,::after { --tw-content: '' }
+        html { line-height: 1.5; -webkit-text-size-adjust: 100%; -moz-tab-size: 4; tab-size: 4; font-feature-settings: normal; font-variation-settings: normal }
+        body { margin: 0; line-height: inherit; font-family: Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale }
+        h1,h2,h3,h4,h5,p,div,label,th,td,span,strong,select,input,pre { font-size: 100%; font-weight: 400 }
+        h1,h2,h3,h4,h5 { font-size: inherit; font-weight: inherit; margin: 0 }
+        p, pre { margin: 0 }
+        table { text-indent: 0; border-color: inherit; border-collapse: collapse }
+        button, input, select { font-family: inherit; font-feature-settings: inherit; font-variation-settings: inherit; font-size: 100%; font-weight: inherit; line-height: inherit; color: inherit; margin: 0; padding: 0 }
+        button,select { text-transform: none }
+        button, [type='button'], [type='reset'], [type='submit'] { -webkit-appearance: button; background-color: transparent; background-image: none }
+        :-moz-focusring { outline: auto }
+        :-moz-ui-invalid { box-shadow: none }
+        canvas { display: block; vertical-align: middle }
+        .container { width: 100% }
+        @media (min-width: 640px) { .container { max-width: 640px } }
+        @media (min-width: 768px) { .container { max-width: 768px } }
+        @media (min-width: 1024px) { .container { max-width: 1024px } }
+        @media (min-width: 1280px) { .container { max-width: 1280px } }
+        .fixed { position: fixed }
+        .bottom-20px { bottom: 20px }
+        .right-30px { right: 30px }
+        .z-99 { z-index: 99 }
+        .mb-10 { margin-bottom: 2.5rem }
+        .mb-2 { margin-bottom: 0.5rem }
+        .mb-3 { margin-bottom: 0.75rem }
+        .mb-4 { margin-bottom: 1rem }
+        .mb-5 { margin-bottom: 1.25rem }
+        .mb-8 { margin-bottom: 2rem }
+        .ml-0\.75rem { margin-left: 0.75rem }
+        .mt-1 { margin-top: 0.25rem }
+        .mt-2 { margin-top: 0.5rem }
+        .mt-3 { margin-top: 0.75rem }
+        .mt-4 { margin-top: 1rem }
+        .mt-5 { margin-top: 1.25rem }
+        .mx-auto { margin-left: auto; margin-right: auto }
+        .inline-flex { display: inline-flex }
+        .hidden { display: none }
+        .flex { display: flex }
+        .grid { display: grid }
+        .h-auto { height: auto }
+        .w-1\/2 { width: 50% }
+        .w-1\/4 { width: 25% }
+        .w-1\/6 { width: 16.666667% }
+        .w-3\/4 { width: 75% }
+        .w-3\/6 { width: 50% }
+        .w-full { width: 100% }
+        .min-w-full { min-width: 100% }
+        .max-w-7xl { max-width: 80rem }
+        .max-w-full { max-width: 100% }
+        .flex-grow { flex-grow: 1 }
+        .max-h-96 { max-height: 24rem }
+        .cursor-pointer { cursor: pointer }
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)) }
+        .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+        .flex-col { flex-direction: column }
+        .items-center { align-items: center }
+        .items-start { align-items: flex-start }
+        .justify-center { justify-content: center }
+        .justify-between { justify-content: space-between }
+        .gap-2 { gap: 0.5rem }
+        .gap-4 { gap: 1rem }
+        .gap-5 { gap: 1.25rem }
+        .gap-8 { gap: 2rem }
+        .gap-y-3 { row-gap: 0.75rem }
+        .gap-x-6 { column-gap: 1.5rem }
+        .whitespace-nowrap { white-space: nowrap }
+        .whitespace-pre-wrap { white-space: pre-wrap }
+        .break-words { overflow-wrap: break-word }
+        .overflow-x-auto { overflow-x: auto }
+        .rounded-full { border-radius: 9999px }
+        .rounded-lg { border-radius: 0.5rem }
+        .rounded-md { border-radius: 0.375rem }
+        .rounded-xl { border-radius: 0.75rem }
+        .rounded-tl-lg { border-top-left-radius: 0.5rem }
+        .rounded-tr-lg { border-top-right-radius: 0.5rem }
+        .border { border-width: 1px }
+        .border-b { border-bottom-width: 1px }
+        .border-b-4 { border-bottom-width: 4px }
+        .border-blue-200 { --tw-border-opacity: 1; border-color: rgb(191 219 254 / var(--tw-border-opacity)) }
+        .border-blue-300 { --tw-border-opacity: 1; border-color: rgb(147 197 253 / var(--tw-border-opacity)) }
+        .border-gray-200 { --tw-border-opacity: 1; border-color: rgb(229 231 235 / var(--tw-border-opacity)) }
+        .border-gray-300 { --tw-border-opacity: 1; border-color: rgb(209 213 219 / var(--tw-border-opacity)) }
+        .border-gray-400 { --tw-border-opacity: 1; border-color: rgb(156 163 175 / var(--tw-border-opacity)) }
+        .border-green-200 { --tw-border-opacity: 1; border-color: rgb(187 247 208 / var(--tw-border-opacity)) }
+        .border-green-300 { --tw-border-opacity: 1; border-color: rgb(110 231 183 / var(--tw-border-opacity)) }
+        .border-indigo-200 { --tw-border-opacity: 1; border-color: rgb(199 210 254 / var(--tw-border-opacity)) }
+        .border-indigo-300 { --tw-border-opacity: 1; border-color: rgb(165 180 252 / var(--tw-border-opacity)) }
+        .border-red-200 { --tw-border-opacity: 1; border-color: rgb(254 202 202 / var(--tw-border-opacity)) }
+        .border-red-300 { --tw-border-opacity: 1; border-color: rgb(252 165 165 / var(--tw-border-opacity)) }
+        .border-rose-200 { --tw-border-opacity: 1; border-color: rgb(254 205 211 / var(--tw-border-opacity)) }
+        .border-rose-300 { --tw-border-opacity: 1; border-color: rgb(253 164 175 / var(--tw-border-opacity)) }
+        .border-yellow-200 { --tw-border-opacity: 1; border-color: rgb(254 240 138 / var(--tw-border-opacity)) }
+        .border-yellow-300 { --tw-border-opacity: 1; border-color: rgb(253 224 71 / var(--tw-border-opacity)) }
+        .bg-blue-100 { --tw-bg-opacity: 1; background-color: rgb(219 234 254 / var(--tw-bg-opacity)) }
+        .bg-blue-50 { --tw-bg-opacity: 1; background-color: rgb(239 246 255 / var(--tw-bg-opacity)) }
+        .bg-gray-100 { --tw-bg-opacity: 1; background-color: rgb(243 244 246 / var(--tw-bg-opacity)) }
+        .bg-gray-50 { --tw-bg-opacity: 1; background-color: rgb(249 250 251 / var(--tw-bg-opacity)) }
+        .bg-green-100 { --tw-bg-opacity: 1; background-color: rgb(220 252 231 / var(--tw-bg-opacity)) }
+        .bg-green-50 { --tw-bg-opacity: 1; background-color: rgb(240 253 244 / var(--tw-bg-opacity)) }
+        .bg-indigo-50 { --tw-bg-opacity: 1; background-color: rgb(238 242 255 / var(--tw-bg-opacity)) }
+        .bg-red-100 { --tw-bg-opacity: 1; background-color: rgb(254 226 226 / var(--tw-bg-opacity)) }
+        .bg-red-50 { --tw-bg-opacity: 1; background-color: rgb(254 242 242 / var(--tw-bg-opacity)) }
+        .bg-rose-100 { --tw-bg-opacity: 1; background-color: rgb(255 228 230 / var(--tw-bg-opacity)) }
+        .bg-rose-50 { --tw-bg-opacity: 1; background-color: rgb(255 241 242 / var(--tw-bg-opacity)) }
+        .bg-white { --tw-bg-opacity: 1; background-color: rgb(255 255 255 / var(--tw-bg-opacity)) }
+        .bg-yellow-100 { --tw-bg-opacity: 1; background-color: rgb(254 252 232 / var(--tw-bg-opacity)) }
+        .bg-yellow-50 { --tw-bg-opacity: 1; background-color: rgb(254 252 232 / var(--tw-bg-opacity)) }
+        .p-3 { padding: 0.75rem }
+        .p-4 { padding: 1rem }
+        .p-5 { padding: 1.25rem }
+        .p-6 { padding: 1.5rem }
+        .pb-4 { padding-bottom: 1rem }
+        .px-4 { padding-left: 1rem; padding-right: 1rem }
+        .py-1\.5 { padding-top: 0.375rem; padding-bottom: 0.375rem }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem }
+        .text-center { text-align: center }
+        .text-left { text-align: left }
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem }
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem }
+        .text-base { font-size: 1rem; line-height: 1.5rem }
+        .text-lg { font-size: 1.125rem; line-height: 1.75rem }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem }
+        .text-xs { font-size: 0.75rem; line-height: 1rem }
+        .font-bold { font-weight: 700 }
+        .font-extrabold { font-weight: 800 }
+        .font-medium { font-weight: 500 }
+        .font-semibold { font-weight: 600 }
+        .uppercase { text-transform: uppercase }
+        .tracking-wider { letter-spacing: 0.05em }
+        .text-blue-800 { --tw-text-opacity: 1; color: rgb(30 64 175 / var(--tw-text-opacity)) }
+        .text-gray-500 { --tw-text-opacity: 1; color: rgb(107 114 128 / var(--tw-text-opacity)) }
+        .text-gray-600 { --tw-text-opacity: 1; color: rgb(75 85 99 / var(--tw-text-opacity)) }
+        .text-gray-700 { --tw-text-opacity: 1; color: rgb(55 65 81 / var(--tw-text-opacity)) }
+        .text-gray-800 { --tw-text-opacity: 1; color: rgb(31 41 55 / var(--tw-text-opacity)) }
+        .text-green-700 { --tw-text-opacity: 1; color: rgb(21 128 61 / var(--tw-text-opacity)) }
+        .text-indigo-700 { --tw-text-opacity: 1; color: rgb(67 56 202 / var(--tw-text-opacity)) }
+        .text-indigo-800 { --tw-text-opacity: 1; color: rgb(55 48 163 / var(--tw-text-opacity)) }
+        .text-red-700 { --tw-text-opacity: 1; color: rgb(185 28 28 / var(--tw-text-opacity)) }
+        .text-red-800 { --tw-text-opacity: 1; color: rgb(153 27 27 / var(--tw-text-opacity)) }
+        .text-red-900 { --tw-text-opacity: 1; color: rgb(127 29 29 / var(--tw-text-opacity)) }
+        .text-rose-700 { --tw-text-opacity: 1; color: rgb(190 18 60 / var(--tw-text-opacity)) }
+        .text-yellow-700 { --tw-text-opacity: 1; color: rgb(180 83 9 / var(--tw-text-opacity)) }
+        .shadow-lg { --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) }
+        .shadow-md { --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) }
+        .shadow-sm { --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) }
+        .shadow-2xl { --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) }
+        .transition-shadow { transition-property: box-shadow; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms }
+        .duration-300 { transition-duration: 300ms }
+        .group:hover .group-hover\:scale-110 { transform: scale(1.1) }
+        .hover\:shadow-xl:hover { --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) }
+        .focus\:border-blue-500:focus { --tw-border-opacity: 1; border-color: rgb(59 130 246 / var(--tw-border-opacity)) }
+        .focus\:ring-blue-500:focus { --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity)); --tw-ring-opacity: 1 }
+        @media (min-width: 640px) {
+            .sm\:p-8 { padding: 2rem }
+            .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+            .sm\:flex-row { flex-direction: row }
+            .sm\:w-auto { width: auto }
+        }
+        @media (min-width: 768px) {
+            .md\:p-10 { padding: 2.5rem }
+            .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) }
+            .md\:flex-row { flex-direction: row }
+            .md\:w-auto { width: auto }
+        }
+        @media (min-width: 1024px) {
+            .lg\:w-1\/2 { width: 50% }
+            .lg\:max-w-7xl { max-width: 80rem }
+            .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) }
+            .lg\:grid-cols-8 { grid-template-columns: repeat(8, minmax(0, 1fr)) }
+            .lg\:flex-row { flex-direction: row }
+        }
+        /* Custom styles from original file */
+        .status-badge { padding: 0.3rem 0.8rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.3rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05); color: #4b5563; background-color: #e0e0e0; }
+        .status-badge.passed { background-color: #dcfce7; color: #16a34a; }
+        .status-badge.failed { background-color: #fee2e2; color: #dc2626; }
+        .status-badge.skipped { background-color: #fffbeb; color: #d97706; }
+        .status-badge.error { background-color: #ffe4e6; color: #e11d48; }
+        .expand-icon { font-size: 0.85rem; cursor: pointer; color: #6b7280; transition: transform 0.3s ease; margin-left: 0.75rem; }
+        .expand-icon:before { content: "\25BC"; }
+        .collapsed .expand-icon:before { content: "\25B6"; }
+        .collapsed .expand-icon { transform: rotate(0deg); }
+        .step-expand-icon { font-size: 0.85rem; cursor: pointer; color: #6b7280; transition: transform 0.3s ease; padding: 0.25rem; border-radius: 0.25rem; display: inline-block; }
+        .step-expand-icon:hover { background-color: #e5e7eb; }
+        .step-expand-icon:before { content: "\25BC"; }
+        .step-collapsed .step-expand-icon:before { content: "\25B6"; }
+        .step-collapsed .step-expand-icon { transform: rotate(0deg); }
+        .nested-data-table { border-collapse: collapse; width: 100%; margin-top: 0.5rem; font-size: 0.875rem; }
+        .nested-data-table th, .nested-data-table td { border: 1px solid #e5e7eb; padding: 0.6rem 0.8rem; text-align: left; word-wrap: break-word; overflow-wrap: break-word; }
+        .nested-data-table th { background-color: #f3f4f6; font-weight: 600; color: #4b5563; }
+        .nested-data-table tr:nth-child(even) { background-color: #f9fafb; }
+        #scrollToTopBtn { display: none; position: fixed; bottom: 20px; right: 30px; z-index: 99; border: none; outline: none; background-color: #10B981; color: white; cursor: pointer; padding: 15px; border-radius: 10px; font-size: 18px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: opacity 0.3s, transform 0.3s; }
+        #scrollToTopBtn:hover { background-color: #059669; transform: translateY(-2px); }
+
+        /* NEW: Styles for our custom chart */
+        .custom-chart-container {
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border: 1px solid #e5e7eb;
+            text-align: center;
+        }
+        .custom-chart-legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+            gap: 1rem;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+        }
+        .legend-color-box {
+            width: 12px;
+            height: 12px;
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+        #custom-tooltip {
+            position: absolute;
+            display: none;
+            background: rgba(0, 0, 0, 0.75);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            pointer-events: none; /* So it doesn't block mouse events on the canvas */
+        }
+
+        @media print {
+            body { background-color: #fff !important; color: #000 !important; margin: 0; padding: 0; }
+            .container { box-shadow: none !important; border: none !important; margin: 0 !important; padding: 0 !important; max-width: none !important; width: 100% !important; }
+            .filter-container, #scrollToTopBtn, .custom-chart-container canvas { display: none !important; }
+            h1, h2, p, span, div, strong, th, td { color: #000 !important; }
+            .feature.collapsed .scenarios, .scenario.collapsed .steps-table-container, .step-detail-row { display: block !important; }
+            .expand-icon, .step-expand-icon { display: none !important; }
+        }
+
+        .filter-hidden { display: none !important; }
+        .custom-chart-container canvas {
+            margin: 0 auto;
+        }
+                .screenshot-container {
+            max-width: 800px;
+            margin: 0 auto 1.25rem auto; /* Center it and add bottom margin */
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .screenshot-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-6 sm:p-8 md:p-10">
+    <div class="container mx-auto bg-white p-6 sm:p-8 md:p-10 rounded-xl shadow-2xl max-w-full lg:max-w-7xl">
+        <h1 class="text-center text-4xl font-extrabold text-green-700 mb-8 pb-4 border-b-4 border-green-300">
+            Test Execution Report
+        </h1>
+        <div class="mb-10 p-6 bg-blue-50 rounded-lg shadow-lg border border-blue-200">
+            <h2 class="text-2xl font-bold text-blue-800 mb-5">Report Details</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-3 gap-x-6 text-gray-700 text-base">
+                <p><span class="font-bold">Owner:</span> <span class="font-semibold text-green-700">Emids Technologies</span></p>
+                <p><span class="font-bold">Project Name:</span> <span class="font-medium text-gray-800">{{ project_name | default('Project X') }}</span></p>
+                <p><span class="font-bold">Report Generated On:</span> <span class="font-medium text-gray-800">{{ report_generated_date | default('2025-06-11 20:00:00') }}</span></p>
+                <p><span class="font-bold">Test Execution Start Date:</span> <span class="font-medium text-gray-800">{{ test_execution_start_date | default('2025-06-11 09:00:00') }}</span></p>
+                <p><span class="font-bold">Test Execution End Date:</span> <span class="font-medium text-gray-800">{{ test_execution_end_date | default('2025-06-11 09:30:00') }}</span></p>
+                <p><span class="font-bold">Test Execution Duration:</span> <span class="font-medium text-gray-800">{{ test_execution_duration | default('30 minutes') }}</span></p>
+                <p><span class="font-bold">Test Environment:</span> <span class="font-medium text-gray-800">{{ test_environment | default('Staging') }}</span></p>
+            </div>
+        </div>
+
+        <div class="mb-10 p-6 bg-indigo-50 rounded-lg shadow-lg border border-indigo-200">
+            <h2 class="text-2xl font-bold text-indigo-800 mb-5">Execution Overview</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 text-center">
+                <div class="p-4 bg-white rounded-lg shadow-md border border-indigo-300 hover:shadow-xl transition-shadow duration-300">
+                    <p class="text-sm text-gray-600 font-bold">Total Features</p>
+                    <p class="text-3xl font-extrabold text-indigo-700 mt-1">{{ feature_count | default(10) }}</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow-md border border-indigo-300 hover:shadow-xl transition-shadow duration-300">
+                    <p class="text-sm text-gray-600 font-bold">Total Scenarios</p>
+                    <p class="text-3xl font-extrabold text-indigo-700 mt-1">{{ scenario_count | default(50) }}</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow-md border border-green-300 hover:shadow-xl transition-shadow duration-300">
+                    <p class="text-sm text-gray-600 font-bold">Features Passed</p>
+                    <p class="text-3xl font-extrabold text-green-700 mt-1">{{ passed_features | default(8) }}</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow-md border border-red-300 hover:shadow-xl transition-shadow duration-300">
+                    <p class="text-sm text-gray-600 font-bold">Features Failed</p>
+                    <p class="text-3xl font-extrabold text-red-700 mt-1">{{ failed_features | default(2) }}</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow-md border border-green-300 hover:shadow-xl transition-shadow duration-300">
+                    <p class="text-sm text-gray-600 font-bold">Scenarios Passed</p>
+                    <p class="text-3xl font-extrabold text-green-700 mt-1">{{ passed_scenarios | default(40) }}</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow-md border border-red-300 hover:shadow-xl transition-shadow duration-300">
+                    <p class="text-sm text-gray-600 font-bold">Scenarios Failed</p>
+                    <p class="text-3xl font-extrabold text-red-700 mt-1">{{ failed_scenarios | default(8) }}</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow-md border border-yellow-300 hover:shadow-xl transition-shadow duration-300">
+                    <p class="text-sm text-gray-600 font-bold">Scenarios Skipped</p>
+                    <p class="text-3xl font-extrabold text-yellow-700 mt-1">{{ skipped_scenarios | default(1) }}</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow-md border border-rose-300 hover:shadow-xl transition-shadow duration-300">
+                    <p class="text-sm text-gray-600 font-bold">Scenarios Errored</p>
+                    <p class="text-3xl font-extrabold text-rose-700 mt-1">{{ error_scenarios | default(1) }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row justify-between items-start gap-8 mb-10">
+            <div class="w-full lg:w-1/2 custom-chart-container">
+                <h2 class="text-2xl font-bold text-blue-800 text-center mb-5">Feature Status Summary</h2>
+                <canvas id="featureChartCanvas" width="300" height="300"></canvas>
+                <div id="featureChartLegend" class="custom-chart-legend"></div>
+            </div>
+            <div class="w-full lg:w-1/2 custom-chart-container">
+                <h2 class="text-2xl font-bold text-blue-800 text-center mb-5">Scenario Status Summary</h2>
+                <canvas id="scenarioChartCanvas" width="300" height="300"></canvas>
+                <div id="scenarioChartLegend" class="custom-chart-legend"></div>
+            </div>
+        </div>
+
+        <div class="filter-container mb-8 p-5 bg-gray-100 rounded-lg shadow-md flex flex-col md:flex-row items-center gap-5">
+            <div class="flex-grow flex flex-col sm:flex-row items-center gap-5 w-full">
+                <label for="statusFilter" class="text-gray-700 font-semibold text-lg whitespace-nowrap">Filter by Status:</label>
+                <select id="statusFilter" onchange="filterReportContent()"
+                        class="block w-full sm:w-auto p-3 border border-gray-300 rounded-lg shadow-sm
+                               focus:ring-blue-500 focus:border-blue-500 text-gray-800 text-base
+                               transition-all duration-200 ease-in-out">
+                    <option value="all">All</option>
+                    <option value="passed">Passed</option>
+                    <option value="failed">Failed</option>
+                    <option value="skipped">Skipped</option>
+                    <option value="error">Errored</option>
+                </select>
+            </div>
+            <div class="flex-grow flex flex-col sm:flex-row items-center gap-5 w-full md:w-auto">
+                <label for="searchFilter" class="text-gray-700 font-semibold text-lg whitespace-nowrap">Search:</label>
+                <input type="text" id="searchFilter" onkeyup="filterReportContent()" placeholder="Search features, scenarios, steps..."
+                       class="block w-full p-3 border border-gray-300 rounded-lg shadow-sm
+                              focus:ring-blue-500 focus:border-blue-500 text-gray-800 text-base
+                              transition-all duration-200 ease-in-out">
+            </div>
+        </div>
+
+        <div id="features-scenarios-details">
+            {% for feature in features %}
+            {% set feature_loop = loop %}
+            <div class="feature p-5 mb-4 rounded-lg shadow-lg border
+                        {{ 'bg-green-50 border-green-200' if feature.status == 'passed' }}
+                        {{ 'bg-red-50 border-red-200' if feature.status == 'failed' }}
+                        {{ 'bg-yellow-50 border-yellow-200' if feature.status == 'skipped' }}
+                        {{ 'bg-rose-50 border-rose-200' if feature.status == 'error' }}
+                        {{ 'collapsed' if not feature.opened }} transition-all duration-300 ease-in-out"
+                        data-feature-status="{{ feature.status }}" id="feature-{{ feature_loop.index0 }}">
+                <h2 class="text-xl font-bold text-gray-800 flex items-center justify-between cursor-pointer group"
+                    onclick="toggleCollapse(this)" role="button" tabindex="0"
+                    aria-expanded="{{ 'true' if feature.opened else 'false' }}" aria-controls="scenarios-{{ feature_loop.index0 }}">
+                    <span>
+                        {{ feature.name | default('Feature Name') }} -
+                        <span class="status-badge
+                            {{ 'passed' if feature.status == 'passed' }}
+                            {{ 'failed' if feature.status == 'failed' }}
+                            {{ 'skipped' if feature.status == 'skipped' }}
+                            {{ 'error' if feature.status == 'error' }}">
+                            {{ feature.status | capitalize | default('Status') }}
+                        </span>
+                    </span>
+                    <span class="expand-icon group-hover:scale-110"></span>
+                </h2>
+                <p class="text-sm text-gray-600 mt-2"><span class="font-bold">Location:</span> <span class="font-medium">{{ feature.location | default('path/to/feature.feature') }}</span></p>
+                {% if feature.tags %}
+                <div class="tags mt-3 flex flex-wrap gap-2">
+                    {% for tag in feature.tags %}
+                    <span class="tag bg-gray-200 text-gray-700 px-4 py-1.5 rounded-full text-xs font-medium border border-gray-300">
+                        {{ tag }}
+                    </span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div id="scenarios-{{ feature_loop.index0 }}" class="scenarios mt-5 {% if not feature.opened %}hidden{% endif %} transition-all duration-300 ease-in-out">
+                    {% for scenario in feature.scenarios %}
+                    {% set scenario_loop = loop %}
+                    <div class="scenario p-4 mb-3 rounded-lg shadow-sm border
+                                {{ 'bg-green-100 border-green-300' if scenario.status == 'passed' }}
+                                {{ 'bg-red-100 border-red-300' if scenario.status == 'failed' }}
+                                {{ 'bg-yellow-100 border-yellow-300' if scenario.status == 'skipped' }}
+                                {{ 'bg-rose-100 border-rose-300' if scenario.status == 'error' }}
+                                {{ 'collapsed' if not scenario.opened }} transition-all duration-300 ease-in-out"
+                                data-scenario-status="{{ scenario.status }}" id="scenario-f{{ feature_loop.index0 }}-s{{ scenario_loop.index0 }}">
+                        <h3 class="text-lg font-semibold text-gray-700 flex items-center justify-between cursor-pointer group"
+                            onclick="toggleCollapse(this)" role="button" tabindex="0"
+                            aria-expanded="{{ 'true' if scenario.opened else 'false' }}" aria-controls="steps-f{{ feature_loop.index0 }}-s{{ scenario_loop.index0 }}">
+                            <span>
+                                {{ scenario.name | default('Scenario Name') }} -
+                                <span class="status-badge
+                                    {{ 'passed' if scenario.status == 'passed' }}
+                                    {{ 'failed' if scenario.status == 'failed' }}
+                                    {{ 'skipped' if scenario.status == 'skipped' }}
+                                    {{ 'error' if scenario.status == 'error' }}">
+                                    {{ scenario.status | capitalize | default('Status') }}
+                                </span>
+                            </span>
+                            <span class="expand-icon group-hover:scale-110"></span>
+                        </h3>
+                        {% if scenario.scenario_tags %}
+                        <div class="tags mt-2 flex flex-wrap gap-2">
+                            {% for tag in scenario.scenario_tags %}
+                            <span class="tag bg-gray-300 text-gray-800 px-4 py-1.5 rounded-full text-xs font-medium border border-gray-400">
+                                {{ tag }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <p class="text-xs text-gray-500 mt-2">
+                            <span class="font-bold">Start Time:</span> <span class="start-time font-medium">{{ scenario.start_time | default('N/A') }}</span> |
+                            <span class="font-bold">End Time:</span> <span class="end-time font-medium">{{ scenario.end_time | default('N/A') }}</span> |
+                            <span class="font-bold">Duration:</span> <span class="Scenario_duration font-medium">{{ scenario.Scenario_duration | default('0s') }}</span>
+                        </p>
+                        <h4 class="text-base font-bold text-gray-700 mt-4 mb-3">Steps:</h4>
+                        <div id="steps-f{{ feature_loop.index0 }}-s{{ scenario_loop.index0 }}" class="steps-table-container overflow-x-auto rounded-lg border border-gray-300 shadow-sm {% if not scenario.opened %}hidden{% endif %}">
+                            <table class="min-w-full bg-white">
+                                <thead>
+                                    <tr class="bg-blue-100">
+                                        <th class="py-3 px-4 text-blue-800 text-left text-xs font-semibold uppercase tracking-wider border-b border-gray-300 rounded-tl-lg">#</th>
+                                        <th class="py-3 px-4 text-blue-800 text-left text-xs font-semibold uppercase tracking-wider border-b border-gray-300 w-1/6">Keyword</th>
+                                        <th class="py-3 px-4 text-blue-800 text-left text-xs font-semibold uppercase tracking-wider border-b border-gray-300 w-3/6">Step Name</th>
+                                        <th class="py-3 px-4 text-blue-800 text-left text-xs font-semibold uppercase tracking-wider border-b border-gray-300">Result</th>
+                                        <th class="py-3 px-4 text-blue-800 text-left text-xs font-semibold uppercase tracking-wider border-b border-gray-300">Duration</th>
+                                        <th class="py-3 px-4 text-blue-800 text-left text-xs font-semibold uppercase tracking-wider border-b border-gray-300 rounded-tr-lg">Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for step in scenario.steps %}
+                                    <tr class="
+                                        {{ 'bg-green-50 text-green-800' if step.result.status | string | lower | trim == 'passed' }}
+                                        {{ 'bg-red-50 text-red-800' if step.result.status | string | lower | trim == 'failed' }}
+                                        {{ 'bg-yellow-50 text-yellow-800' if step.result.status | string | lower | trim == 'skipped' }}
+                                        {{ 'bg-rose-50 text-rose-800' if step.result.status | string | lower | trim == 'error' }}
+                                        hover:bg-gray-100 border-b border-gray-200 transition-all duration-200 ease-in-out"
+                                        data-step-row="true" data-step-status="{{ step.result.status }}"
+                                        id="step-f{{ feature_loop.index0 }}-s{{ scenario_loop.index0 }}-t{{ loop.index0 }}">
+                                        <td class="py-3 px-4 text-sm">{{ loop.index }}</td>
+                                        <td class="py-3 px-4 text-sm">{{ step.keyword | default('N/A') }}</td>
+                                        <td class="py-3 px-4 text-sm break-words">{{ step.name | default('N/A') }}</td>
+                                        <td class="py-3 px-4 text-sm
+                                            {% set normalized_status = step.result.status | string | lower | trim %}
+                                            {{ 'text-green-700' if normalized_status == 'passed' }}
+                                            {{ 'text-red-700' if normalized_status == 'failed' }}
+                                            {{ 'text-yellow-700' if normalized_status == 'skipped' }}
+                                            {{ 'text-rose-700' if normalized_status == 'error' }}
+                                            {{ 'text-gray-700' if normalized_status not in ['passed', 'failed', 'skipped', 'error'] }}">
+                                            {{ (step.result.status | default('Not Executed')) | string | capitalize }}
+                                        </td>
+                                        <td class="py-3 px-4 text-sm" data-duration="{{ step.result.duration | default('0s') }}">{{ step.result.duration | default('0s') }}</td>
+                                        <td class="py-3 px-4 text-sm">
+                                            <div class="flex justify-center items-center">
+                                                {% if step.failure_reason or step.test_data or step.test_output_data or step.table %}
+                                                <span class="step-expand-icon" onclick="toggleStepDetails(this)" role="button" tabindex="0"
+                                                    aria-expanded="false" aria-controls="step-details-f{{ feature_loop.index0 }}-s{{ scenario_loop.index0 }}-t{{ loop.index0 }}"></span>
+                                                {% else %}
+                                                <span class="text-gray-400 text-xs">N/A</span>
+                                                {% endif %}
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    {% if step.failure_reason or step.test_data or step.test_output_data or step.table %}
+                                    <tr class="step-detail-row hidden bg-gray-100 border-b border-gray-200"
+                                        id="step-details-f{{ feature_loop.index0 }}-s{{ scenario_loop.index0 }}-t{{ loop.index0 }}">
+                                        <td colspan="6" class="p-5">
+{% if step.screenshot and step.screenshot.screenshot %}
+    {% set screenshot_data = step.screenshot.screenshot %}
+    <div class="screenshot-container mb-5">
+        <h5 class="text-sm font-bold text-gray-700 mb-2">Screenshot:</h5>
+
+        <img src="data:{{ screenshot_data.mime_type | default('image/png') }};base64,{{ screenshot_data.data }}"
+             alt="Screenshot of failure"
+             title="Screenshot captured at failure step" />
+    </div>
+{% endif %}
+                                            {% if step.failure_reason %}
+                                            <div class="mb-5 p-4 bg-red-100 rounded-md border border-red-200 shadow-sm">
+                                                <h5 class="text-sm font-bold text-red-800 mb-2">Failure Reason:</h5>
+                                                <pre class="text-red-900 text-xs font-mono whitespace-pre-wrap break-words overflow-auto">{{ step.failure_reason }}</pre>
+                                            </div>
+                                            {% endif %}
+
+
+                                            {% if step.test_data %}
+                                            <div class="mb-5">
+                                                <h5 class="text-sm font-bold text-gray-700 mb-2">Test Data:</h5>
+                                                {% if step.test_data is mapping and step.test_data | length > 0 %}
+                                                <div class="overflow-x-auto rounded-md border border-gray-300 shadow-sm">
+                                                    <table class="nested-data-table min-w-full">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="w-1/4">Field</th>
+                                                                <th class="w-3/4">Value</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {% for key, value in step.test_data.items() %}
+                                                            <tr>
+                                                                <td>{{ key }}</td>
+                                                                <td>
+                                                                    {% if value is iterable and not value is string %}
+                                                                        {% if value is mapping and value | length > 0 %}
+                                                                        <div class="overflow-x-auto">
+                                                                            <table class="nested-data-table min-w-full">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        {% for sub_key in value.keys() %}
+                                                                                        <th>{{ sub_key }}</th>
+                                                                                        {% endfor %}
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        {% for sub_key, sub_value in value.items() %}
+                                                                                        <td>
+                                                                                            {% if sub_value is iterable and not sub_value is string %}
+                                                                                                {% if sub_value is mapping and sub_value | length > 0 %}
+                                                                                                <div class="overflow-x-auto">
+                                                                                                    <table class="nested-data-table min-w-full">
+                                                                                                        <thead>
+                                                                                                            <tr>
+                                                                                                                {% for sub_sub_key in sub_value.keys() %}
+                                                                                                                <th>{{ sub_sub_key }}</th>
+                                                                                                                {% endfor %}
+                                                                                                            </tr>
+                                                                                                        </thead>
+                                                                                                        <tbody>
+                                                                                                            {% for sub_sub_key, sub_sub_value in sub_value.items() %}
+                                                                                                            <td>{{ sub_sub_value | safe }}</td>
+                                                                                                            {% endfor %}
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                </div>
+                                                                                                {% elif sub_value.__class__.__name__ == 'list' and sub_value | length > 0 %}
+                                                                                                <div class="overflow-x-auto">
+                                                                                                    <table class="nested-data-table min-w-full">
+                                                                                                        <thead>
+                                                                                                            <tr>
+                                                                                                                {% if sub_value|length > 0 and sub_value[0] is mapping %}
+                                                                                                                    {% for sub_sub_key in sub_value[0].keys() %}
+                                                                                                                    <th>{{ sub_sub_key }}</th>
+                                                                                                                    {% endfor %}
+                                                                                                                {% else %}
+                                                                                                                    <th>Value</th>
+                                                                                                                {% endif %}
+                                                                                                            </tr>
+                                                                                                        </thead>
+                                                                                                        <tbody>
+                                                                                                            {% for item in sub_value %}
+                                                                                                            <tr>
+                                                                                                                {% if item is mapping %}
+                                                                                                                    {% for sub_sub_key, sub_sub_value in item.items() %}
+                                                                                                                    <td>{{ sub_sub_value | safe }}</td>
+                                                                                                                    {% endfor %}
+                                                                                                                {% else %}
+                                                                                                                    <td>{{ item | safe }}</td>
+                                                                                                                {% endif %}
+                                                                                                            </tr>
+                                                                                                            {% endfor %}
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                </div>
+                                                                                                {% else %}
+                                                                                                <span class="text-gray-500">No data available</span>
+                                                                                                {% endif %}
+                                                                                            {% else %}
+                                                                                                {{ sub_value | safe }}
+                                                                                            {% endif %}
+                                                                                        </td>
+                                                                                        {% endfor %}
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        {% elif value.__class__.__name__ == 'list' and value | length > 0 %}
+                                                                            <div class="overflow-x-auto">
+                                                                                <table class="nested-data-table min-w-full">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            {% if value[0] is mapping %}
+                                                                                                {% for sub_key in value[0].keys() %}
+                                                                                                <th>{{ sub_key }}</th>
+                                                                                                {% endfor %}
+                                                                                            {% else %}
+                                                                                                <th>Value</th>
+                                                                                            {% endif %}
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        {% for item in value %}
+                                                                                        <tr>
+                                                                                            {% if item is mapping %}
+                                                                                                {% for sub_key, sub_value in item.items() %}
+                                                                                                <td>{{ sub_value | safe }}</td>
+                                                                                                {% endfor %}
+                                                                                            {% else %}
+                                                                                                <td>{{ item | safe }}</td>
+                                                                                            {% endif %}
+                                                                                        </tr>
+                                                                                        {% endfor %}
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        {% else %}
+                                                                            <span class="text-gray-500">No data available</span>
+                                                                        {% endif %}
+                                                                    {% else %}
+                                                                        {{ value | safe }}
+                                                                    {% endif %}
+                                                                </td>
+                                                            </tr>
+                                                            {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                {% else %}
+                                                <p class="text-gray-500 text-sm italic p-2 border border-gray-200 rounded-md bg-gray-50">No test data available for this step.</p>
+                                                {% endif %}
+                                            </div>
+                                            {% endif %}
+
+                                            {% if step.test_output_data %}
+                                            <div class="mb-5">
+                                                <h5 class="text-sm font-bold text-gray-700 mb-2">Test Output Data:</h5>
+                                                {% if step.test_output_data is mapping and step.test_output_data | length > 0 %}
+                                                <div class="overflow-x-auto rounded-md border border-gray-300 shadow-sm">
+                                                    <table class="nested-data-table min-w-full">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="w-1/4">Field</th>
+                                                                <th class="w-3/4">Value</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {% for key, value in step.test_output_data.items() %}
+                                                            <tr>
+                                                                <td>{{ key }}</td>
+                                                                <td>
+                                                                    {% if value is iterable and not value is string %}
+                                                                        {% if value is mapping and value | length > 0 %}
+                                                                        <div class="overflow-x-auto">
+                                                                            <table class="nested-data-table min-w-full">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        {% for sub_key in value.keys() %}
+                                                                                        <th>{{ sub_key }}</th>
+                                                                                        {% endfor %}
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        {% for sub_key, sub_value in value.items() %}
+                                                                                        <td>
+                                                                                            {% if sub_value is iterable and not sub_value is string %}
+                                                                                                {% if sub_value is mapping and sub_value | length > 0 %}
+                                                                                                <div class="overflow-x-auto">
+                                                                                                    <table class="nested-data-table min-w-full">
+                                                                                                        <thead>
+                                                                                                            <tr>
+                                                                                                                {% for sub_sub_key in sub_value.keys() %}
+                                                                                                                <th>{{ sub_sub_key }}</th>
+                                                                                                                {% endfor %}
+                                                                                                            </tr>
+                                                                                                        </thead>
+                                                                                                        <tbody>
+                                                                                                            {% for sub_sub_key, sub_sub_value in sub_value.items() %}
+                                                                                                            <td>{{ sub_sub_value | safe }}</td>
+                                                                                                            {% endfor %}
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                </div>
+                                                                                                {% elif sub_value.__class__.__name__ == 'list' and sub_value | length > 0 %}
+                                                                                                <div class="overflow-x-auto">
+                                                                                                    <table class="nested-data-table min-w-full">
+                                                                                                        <thead>
+                                                                                                            <tr>
+                                                                                                                {% if sub_value|length > 0 and sub_value[0] is mapping %}
+                                                                                                                    {% for sub_sub_key in sub_value[0].keys() %}
+                                                                                                                    <th>{{ sub_sub_key }}</th>
+                                                                                                                    {% endfor %}
+                                                                                                                {% else %}
+                                                                                                                    <th>Value</th>
+                                                                                                                {% endif %}
+                                                                                                            </tr>
+                                                                                                        </thead>
+                                                                                                        <tbody>
+                                                                                                            {% for item in sub_value %}
+                                                                                                            <tr>
+                                                                                                                {% if item is mapping %}
+                                                                                                                    {% for sub_sub_key, sub_sub_value in item.items() %}
+                                                                                                                    <td>{{ sub_sub_value | safe }}</td>
+                                                                                                                    {% endfor %}
+                                                                                                                {% else %}
+                                                                                                                    <td>{{ item | safe }}</td>
+                                                                                                                {% endif %}
+                                                                                                            </tr>
+                                                                                                            {% endfor %}
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                </div>
+                                                                                                {% else %}
+                                                                                                <span class="text-gray-500">No data available</span>
+                                                                                                {% endif %}
+                                                                                            {% else %}
+                                                                                                {{ sub_value | safe }}
+                                                                                            {% endif %}
+                                                                                        </td>
+                                                                                        {% endfor %}
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        {% elif value.__class__.__name__ == 'list' and value | length > 0 %}
+                                                                            <div class="overflow-x-auto">
+                                                                                <table class="nested-data-table min-w-full">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            {% if value[0] is mapping %}
+                                                                                                {% for sub_key in value[0].keys() %}
+                                                                                                <th>{{ sub_key }}</th>
+                                                                                                {% endfor %}
+                                                                                            {% else %}
+                                                                                                <th>Value</th>
+                                                                                            {% endif %}
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        {% for item in value %}
+                                                                                        <tr>
+                                                                                            {% if item is mapping %}
+                                                                                                {% for sub_key, sub_value in item.items() %}
+                                                                                                <td>{{ sub_value | safe }}</td>
+                                                                                                {% endfor %}
+                                                                                            {% else %}
+                                                                                                <td>{{ item | safe }}</td>
+                                                                                            {% endif %}
+                                                                                        </tr>
+                                                                                        {% endfor %}
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        {% else %}
+                                                                            <span class="text-gray-500">No data available</span>
+                                                                        {% endif %}
+                                                                    {% else %}
+                                                                        {{ value | safe }}
+                                                                    {% endif %}
+                                                                </td>
+                                                            </tr>
+                                                            {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                {% else %}
+                                                <p class="text-gray-500 text-sm italic p-2 border border-gray-200 rounded-md bg-gray-50">No test output data available for this step.</p>
+                                                {% endif %}
+                                            </div>
+                                            {% endif %}
+
+                                            {% if step.table and step.table.headings and step.table.rows %}
+                                            <div>
+                                                <h5 class="text-sm font-bold text-gray-700 mb-2">Step Data Table:</h5>
+                                                {% if step.table.rows | length > 0 %}
+                                                <div class="overflow-x-auto rounded-md border border-gray-300 shadow-sm">
+                                                    <table class="nested-data-table min-w-full">
+                                                        <thead>
+                                                            <tr>
+                                                                {% for heading in step.table.headings %}
+                                                                <th>{{ heading }}</th>
+                                                                {% endfor %}
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {% for row in step.table.rows %}
+                                                            <tr>
+                                                                {% for cell in row %}
+                                                                <td>{{ cell | safe }}</td>
+                                                                {% endfor %}
+                                                            </tr>
+                                                            {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                {% else %}
+                                                <p class="text-gray-500 text-sm italic p-2 border border-gray-200 rounded-md bg-gray-50">No step data table available.</p>
+                                                {% endif %}
+                                            </div>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <button onclick="scrollToTop()" id="scrollToTopBtn" title="Go to top">
+        &#9650;
+    </button>
+
+    <div id="custom-tooltip"></div>
+
+    <script>
+        // NEW: This is our own custom chart drawing function. No external libraries needed.
+        function createCustomDonutChart(options) {
+            const canvas = document.getElementById(options.canvasId);
+            const legendContainer = document.getElementById(options.legendId);
+            if (!canvas || !legendContainer) return;
+
+            const ctx = canvas.getContext('2d');
+            const tooltip = document.getElementById('custom-tooltip');
+
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = Math.min(centerX, centerY) * 0.8;
+            const donutWidth = radius * 0.4;
+
+            const total = options.data.values.reduce((sum, value) => sum + value, 0);
+
+            function drawChart() {
+                let startAngle = -0.5 * Math.PI; // Start at the top
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < options.data.values.length; i++) {
+                    if (options.data.values[i] === 0) continue; // Skip drawing zero-value slices
+                    const sliceAngle = (options.data.values[i] / total) * 2 * Math.PI;
+                    const endAngle = startAngle + sliceAngle;
+
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                    ctx.arc(centerX, centerY, radius - donutWidth, endAngle, startAngle, true);
+                    ctx.closePath();
+                    ctx.fillStyle = options.colors[i % options.colors.length];
+                    ctx.fill();
+
+                    const labelAngle = startAngle + sliceAngle / 2;
+                    const labelRadius = radius - donutWidth / 2;
+                    const labelX = centerX + Math.cos(labelAngle) * labelRadius;
+                    const labelY = centerY + Math.sin(labelAngle) * labelRadius;
+
+                    // --- FIX IS HERE ---
+                    // Changed text color from '#fff' to a dark gray for better visibility
+                    ctx.fillStyle = '#374151';
+                    ctx.font = 'bold 12px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    const percentage = ((options.data.values[i] / total) * 100).toFixed(0);
+                    if (percentage > 5) {
+                        ctx.fillText(percentage + '%', labelX, labelY);
+                    }
+                    startAngle = endAngle;
+                }
+            }
+
+            function createLegend() {
+                legendContainer.innerHTML = '';
+                for (let i = 0; i < options.data.labels.length; i++) {
+                    if (options.data.values[i] === 0) continue;
+                    const legendItem = document.createElement('div');
+                    legendItem.className = 'legend-item';
+
+                    const colorBox = document.createElement('div');
+                    colorBox.className = 'legend-color-box';
+                    colorBox.style.backgroundColor = options.colors[i % options.colors.length];
+
+                    const label = document.createElement('span');
+                    label.textContent = `${options.data.labels[i]} (${options.data.values[i]})`;
+
+                    legendItem.appendChild(colorBox);
+                    legendItem.appendChild(label);
+                    legendContainer.appendChild(legendItem);
+                }
+            }
+
+            canvas.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                const dx = mouseX - centerX;
+                const dy = mouseY - centerY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                let angle = Math.atan2(dy, dx);
+                if (angle < -0.5 * Math.PI) {
+                    angle += 2 * Math.PI;
+                }
+
+                let hoveredSlice = null;
+
+                if (distance >= radius - donutWidth && distance <= radius) {
+                    let currentAngle = -0.5 * Math.PI;
+                    for (let i = 0; i < options.data.values.length; i++) {
+                        if (options.data.values[i] === 0) continue;
+                        const sliceAngle = (options.data.values[i] / total) * 2 * Math.PI;
+                        if (angle >= currentAngle && angle <= currentAngle + sliceAngle) {
+                            hoveredSlice = {
+                                label: options.data.labels[i],
+                                value: options.data.values[i],
+                                color: options.colors[i % options.colors.length]
+                            };
+                            break;
+                        }
+                        currentAngle += sliceAngle;
+                    }
+                }
+
+                if (hoveredSlice) {
+                    tooltip.style.display = 'block';
+                    tooltip.style.left = `${e.pageX + 10}px`;
+                    tooltip.style.top = `${e.pageY + 10}px`;
+                    tooltip.textContent = `${hoveredSlice.label}: ${hoveredSlice.value}`;
+                    canvas.style.cursor = 'pointer';
+                } else {
+                    tooltip.style.display = 'none';
+                    canvas.style.cursor = 'default';
+                }
+            });
+
+            drawChart();
+            createLegend();
+        }
+
+        // --- Your original script logic below ---
+
+        // Data for charts - these will be populated by Jinja2 from your backend
+        const featureData = {
+            labels: ['Passed', 'Failed', 'Skipped', 'Errored'],
+            values: [{{ passed_features | default(0) }}, {{ failed_features | default(0) }}, {{ skipped_features | default(0) }}, {{ error_features | default(0) }}]
+        };
+
+        const scenarioData = {
+            labels: ['Passed', 'Failed', 'Skipped', 'Errored'],
+            values: [{{ passed_scenarios | default(0) }}, {{ failed_scenarios | default(0) }}, {{ skipped_scenarios | default(0) }}, {{ error_scenarios | default(0) }}]
+        };
+
+        function toggleCollapse(element) {
+            const parentDiv = element.closest('.feature, .scenario');
+            if (parentDiv) {
+                const content = parentDiv.querySelector(':scope > .scenarios, :scope > .steps-table-container');
+                if (content) {
+                    const isCollapsed = parentDiv.classList.toggle('collapsed');
+                    content.classList.toggle('hidden', isCollapsed);
+                    element.setAttribute('aria-expanded', !isCollapsed);
+                }
+            }
+        }
+
+        function toggleStepDetails(element) {
+            const parentRow = element.closest('tr[data-step-row="true"]');
+            if (parentRow) {
+                parentRow.classList.toggle('step-collapsed');
+                const nextSibling = parentRow.nextElementSibling;
+                if (nextSibling && nextSibling.classList.contains('step-detail-row')) {
+                    const isHidden = nextSibling.classList.toggle('hidden');
+                    element.setAttribute('aria-expanded', String(!isHidden));
+                }
+            }
+        }
+
+        function filterReportContent() {
+            const statusFilter = document.getElementById('statusFilter');
+            const searchFilter = document.getElementById('searchFilter');
+            const selectedStatus = statusFilter.value;
+            const searchText = searchFilter.value.toLowerCase();
+
+            const features = document.querySelectorAll('.feature');
+
+            features.forEach(feature => {
+                let isAnyScenarioVisible = false;
+                const scenarios = feature.querySelectorAll('.scenario');
+                const featureName = feature.querySelector('h2 span').textContent.toLowerCase();
+
+                scenarios.forEach(scenario => {
+                    const scenarioStatus = scenario.dataset.scenarioStatus;
+                    const scenarioName = scenario.querySelector('h3 span').textContent.toLowerCase();
+
+                    const statusMatch = (selectedStatus === 'all' || scenarioStatus === selectedStatus);
+                    const textMatch = (searchText === '' || featureName.includes(searchText) || scenarioName.includes(searchText));
+
+                    // FIX: Use a dedicated class to control filter visibility
+                    if (statusMatch && textMatch) {
+                        scenario.classList.remove('filter-hidden');
+                        isAnyScenarioVisible = true;
+                    } else {
+                        scenario.classList.add('filter-hidden');
+                    }
+                });
+
+                // Also use the class-based approach for the feature itself
+                if (isAnyScenarioVisible) {
+                    feature.classList.remove('filter-hidden');
+                } else {
+                    feature.classList.add('filter-hidden');
+                }
+            });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.onscroll = function() {
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Call our new custom chart function
+            createCustomDonutChart({
+                canvasId: 'featureChartCanvas',
+                legendId: 'featureChartLegend',
+                data: featureData,
+                colors: ['#4CAF50', '#F44336']
+            });
+
+            createCustomDonutChart({
+                canvasId: 'scenarioChartCanvas',
+                legendId: 'scenarioChartLegend',
+                data: scenarioData,
+                colors: ['#4CAF50', '#F44336', '#FFEB3B', '#E11D48']
+            });
+        });
+    </script>
+</body>
+</html>
+

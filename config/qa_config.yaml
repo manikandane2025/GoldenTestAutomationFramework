@@ -1,0 +1,39 @@
+# qa_config.yaml
+
+# Kafka related configurations
+kafka:
+  kafka_host: "qa-kafka-host"
+  kafka_topic: "qa-kafka-topic"
+  kafka_group_id: "qa-consumer-group"
+  kafka_auto_offset_reset: "earliest"
+  kafka_enable_auto_commit: true
+  sasl_mechanism: "PLAIN"
+  sasl_plain_username: "qa-username"  # QA-specific username
+  sasl_plain_password: ""  # Leave empty if Vault or another mechanism is used for token
+  security_protocol: "SASL_PLAINTEXT"
+
+# HashiCorp Vault usage
+vault:
+  use_hashicorp_vault: "Yes"  # Using Vault for fetching secrets
+  vault_token: "qa-vault-token"       # Vault token for QA environment
+  vault_url: "http://vault.qa.example.com" # Vault URL for QA environment
+  vault_secret_path: "path/to/kafka/qa/token" # Path to the Kafka token secret in Vault
+
+# Databricks configurations
+databricks:
+  databricks_token: "qa-databricks-token"
+  databricks_host: "qa-databricks-host"
+
+# ADLS configurations
+adls:
+  adls_account: "qa-adls-account"
+  adls_container: "qa-adls-container"
+  adls_path: "qa/adls/path"
+  adls_account_url: https://<your-adls-account-name>.dfs.core.windows.net
+
+# Splunk configuration for logging
+splunk:
+  enabled: true
+  url: "https://splunk-qa.example.com"
+  token: "splunk-qa-token"
+  index: "qa-test-results"

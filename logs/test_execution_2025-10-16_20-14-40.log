@@ -1,0 +1,58 @@
+2025-10-16 20:14:40,492 - TestAutomationLogger - INFO - runner.configure_logging - Line: 58 - Test execution started with Run ID: 53320308-5faa-4377-99a7-ae09ddf20a71, log level: INFO
+2025-10-16 20:14:40,492 - TestAutomationLogger - INFO - runner.save_instance_to_file - Line: 89 - TestRunner instance data saved successfully.
+2025-10-16 20:14:40,519 - TestAutomationLogger - INFO - runner.load_instance_from_file - Line: 115 - TestRunner instance data loaded successfully.
+2025-10-16 20:14:40,519 - TestAutomationLogger - INFO - runner.load_environment_config - Line: 270 - Loading configuration for environment 'dev' from C:\pythonProject\pythonProject\pythonProject\PythonAutomationFramework - Playwright - Copy\config\dev_config.yaml
+2025-10-16 20:14:40,523 - TestAutomationLogger - INFO - runner.load_environment_config - Line: 270 - Loading configuration for environment 'dev' from C:\pythonProject\pythonProject\pythonProject\PythonAutomationFramework - Playwright - Copy\config\dev_config.yaml
+2025-10-16 20:14:40,525 - TestAutomationLogger - INFO - runner.create_artifacts_zip - Line: 149 - Created test artifacts ZIP: C:\pythonProject\pythonProject\pythonProject\PythonAutomationFramework - Playwright - Copy\reports\Test_Results_Artifacts_2025-10-16_20-14-40.zip
+2025-10-16 20:14:40,551 - TestAutomationLogger - INFO - runner.create_folder_in_zip - Line: 137 - Created folder 'Supporting_Files' in ZIP: C:\pythonProject\pythonProject\pythonProject\PythonAutomationFramework - Playwright - Copy\reports\Test_Results_Artifacts_2025-10-16_20-14-40.zip
+2025-10-16 20:14:40,551 - TestAutomationLogger - INFO - runner.run_behave_tests - Line: 450 - Starting Behave tests with parallel_run=False, max_parallel_jobs=2, test_tags=['playwrighttests']
+2025-10-16 20:14:40,551 - TestAutomationLogger - INFO - runner.run_behave_tests - Line: 453 - Test execution started at: 2025-10-16 20:14:40.551500
+2025-10-16 20:14:40,552 - TestAutomationLogger - INFO - runner.run_behave_tests - Line: 458 - Running Behave with arguments: ['--tags=playwrighttests', '--no-capture'] and feature files: ['C:\\pythonProject\\pythonProject\\pythonProject\\PythonAutomationFramework - Playwright - Copy\\features\\GoogleSearch.feature', 'C:\\pythonProject\\pythonProject\\pythonProject\\PythonAutomationFramework - Playwright - Copy\\features\\swaplabs.feature']
+2025-10-16 20:14:40,552 - TestAutomationLogger - INFO - runner.run_behave_tests - Line: 462 - Total feature files to execute: 2
+2025-10-16 20:14:40,552 - TestAutomationLogger - INFO - runner.run_behave_tests - Line: 476 - Running tests sequentially (max_parallel_jobs =1 or not enough features for parallel)...
+2025-10-16 20:14:40,552 - TestAutomationLogger - INFO - runner.load_instance_from_file - Line: 115 - TestRunner instance data loaded successfully.
+2025-10-16 20:14:40,552 - TestAutomationLogger - INFO - runner.run_behave_test - Line: 416 - Loaded TestRunner details: 53320308-5faa-4377-99a7-ae09ddf20a71, 2025-10-16_20-14-40, C:\pythonProject\pythonProject\pythonProject\PythonAutomationFramework - Playwright - Copy\reports, test_execution_2025-10-16_20-14-40.log, dev, C:\pythonProject\pythonProject\pythonProject\PythonAutomationFramework - Playwright - Copy\reports\Test_report_2025-10-16_20-14-40.html, C:\pythonProject\pythonProject\pythonProject\PythonAutomationFramework - Playwright - Copy\logs\test_execution_2025-10-16_20-14-40.log
+2025-10-16 20:14:40,552 - TestAutomationLogger - INFO - runner.run_behave_test - Line: 426 - Creating new JSON report file: C:\pythonProject\pythonProject\pythonProject\PythonAutomationFramework - Playwright - Copy\reports\behave_report_2025-10-16_20-14-40.json
+2025-10-16 20:14:40,553 - TestAutomationLogger - INFO - runner.run_behave_test - Line: 433 - Running Behave with arguments: --tags=playwrighttests --no-capture C:\pythonProject\pythonProject\pythonProject\PythonAutomationFramework - Playwright - Copy\features\GoogleSearch.feature C:\pythonProject\pythonProject\pythonProject\PythonAutomationFramework - Playwright - Copy\features\swaplabs.feature --format=CustomJsonReportFormatter.custom_json_formatter:CustomJSONFormatter --outfile=C:\pythonProject\pythonProject\pythonProject\PythonAutomationFramework - Playwright - Copy\reports\behave_report_2025-10-16_20-14-40.json
+2025-10-16 20:14:40,553 - TestAutomationLogger - INFO - runner.run_behave_test - Line: 436 - Final Behave arguments: --tags=playwrighttests --no-capture C:\pythonProject\pythonProject\pythonProject\PythonAutomationFramework - Playwright - Copy\features\GoogleSearch.feature C:\pythonProject\pythonProject\pythonProject\PythonAutomationFramework - Playwright - Copy\features\swaplabs.feature --format=CustomJsonReportFormatter.custom_json_formatter:CustomJSONFormatter --outfile=C:\pythonProject\pythonProject\pythonProject\PythonAutomationFramework - Playwright - Copy\reports\behave_report_2025-10-16_20-14-40.json --no-skipped
+2025-10-16 20:14:40,553 - TestAutomationLogger - INFO - runner.run_behave_test - Line: 437 - Starting Behave test run with Run ID: 53320308-5faa-4377-99a7-ae09ddf20a71
+2025-10-16 20:14:41,355 - TestAutomationLogger - INFO - PlayWrightClient._start_browser_session - Line: 119 - Using Chrome browser channel.
+2025-10-16 20:14:41,355 - TestAutomationLogger - INFO - PlayWrightClient._start_browser_session - Line: 145 - Set download directory to /path/to/download.
+2025-10-16 20:14:41,588 - TestAutomationLogger - INFO - PlayWrightClient._start_browser_session - Line: 172 - Browser 'chrome' launched with headless=False.
+2025-10-16 20:14:41,588 - TestAutomationLogger - INFO - PlayWrightClient._start_browser_session - Line: 178 - Starting in incognito (non-persistent) mode.
+2025-10-16 20:14:42,677 - TestAutomationLogger - INFO - PlayWrightClient.navigate - Line: 259 - Navigation to https://www.saucedemo.com/
+2025-10-16 20:14:42,688 - TestAutomationLogger - INFO - PlayWrightClient.wait_for_load_state - Line: 364 - Wait for load state 'load'
+2025-10-16 20:14:43,117 - TestAutomationLogger - INFO - PlayWrightClient._start_browser_session - Line: 119 - Using Chrome browser channel.
+2025-10-16 20:14:43,117 - TestAutomationLogger - INFO - PlayWrightClient._start_browser_session - Line: 145 - Set download directory to /path/to/download.
+2025-10-16 20:14:43,329 - TestAutomationLogger - INFO - PlayWrightClient._start_browser_session - Line: 172 - Browser 'chrome' launched with headless=False.
+2025-10-16 20:14:43,330 - TestAutomationLogger - INFO - PlayWrightClient._start_browser_session - Line: 178 - Starting in incognito (non-persistent) mode.
+2025-10-16 20:14:43,991 - TestAutomationLogger - INFO - PlayWrightClient.navigate - Line: 259 - Navigation to https://www.google.com/
+2025-10-16 20:14:44,001 - TestAutomationLogger - INFO - PlayWrightClient.wait_for_load_state - Line: 364 - Wait for load state 'load'
+2025-10-16 20:14:44,002 - TestAutomationLogger - INFO - swaplabs_steps.step_client_init - Line: 36 - Successfully initialized multiple Playwright clients.
+2025-10-16 20:14:44,058 - TestAutomationLogger - INFO - WebElements.fill - Line: 260 - ACTION: Username Input Field - Entering username: standard_user: Entered 'standard_user'
+2025-10-16 20:15:14,671 - TestAutomationLogger - INFO - WebElements._capture_on_failure - Line: 67 - CAPTURED: Screenshot on failure of 'Fill_Timeout' for Password Input Field.
+2025-10-16 20:15:14,982 - TestAutomationLogger - INFO - PlayWrightClient.close_browser - Line: 248 - Browser and playwright instance closed.
+2025-10-16 20:15:15,214 - TestAutomationLogger - INFO - PlayWrightClient.close_browser - Line: 248 - Browser and playwright instance closed.
+2025-10-16 20:15:15,746 - TestAutomationLogger - INFO - PlayWrightClient._start_browser_session - Line: 119 - Using Chrome browser channel.
+2025-10-16 20:15:15,746 - TestAutomationLogger - INFO - PlayWrightClient._start_browser_session - Line: 145 - Set download directory to /path/to/download.
+2025-10-16 20:15:16,223 - TestAutomationLogger - INFO - PlayWrightClient._start_browser_session - Line: 172 - Browser 'chrome' launched with headless=False.
+2025-10-16 20:15:16,223 - TestAutomationLogger - INFO - PlayWrightClient._start_browser_session - Line: 178 - Starting in incognito (non-persistent) mode.
+2025-10-16 20:15:18,755 - TestAutomationLogger - INFO - PlayWrightClient.navigate - Line: 259 - Navigation to https://www.saucedemo.com/
+2025-10-16 20:15:18,762 - TestAutomationLogger - INFO - PlayWrightClient.wait_for_load_state - Line: 364 - Wait for load state 'load'
+2025-10-16 20:15:19,179 - TestAutomationLogger - INFO - PlayWrightClient._start_browser_session - Line: 119 - Using Chrome browser channel.
+2025-10-16 20:15:19,179 - TestAutomationLogger - INFO - PlayWrightClient._start_browser_session - Line: 145 - Set download directory to /path/to/download.
+2025-10-16 20:15:19,393 - TestAutomationLogger - INFO - PlayWrightClient._start_browser_session - Line: 172 - Browser 'chrome' launched with headless=False.
+2025-10-16 20:15:19,393 - TestAutomationLogger - INFO - PlayWrightClient._start_browser_session - Line: 178 - Starting in incognito (non-persistent) mode.
+2025-10-16 20:15:20,107 - TestAutomationLogger - INFO - PlayWrightClient.navigate - Line: 259 - Navigation to https://www.google.com/
+2025-10-16 20:15:20,118 - TestAutomationLogger - INFO - PlayWrightClient.wait_for_load_state - Line: 364 - Wait for load state 'load'
+2025-10-16 20:15:20,118 - TestAutomationLogger - INFO - swaplabs_steps.step_client_init - Line: 36 - Successfully initialized multiple Playwright clients.
+2025-10-16 20:15:20,173 - TestAutomationLogger - INFO - WebElements.fill - Line: 260 - ACTION: Username Input Field - Entering username: locked_out_user: Entered 'locked_out_user'
+2025-10-16 20:15:50,759 - TestAutomationLogger - INFO - WebElements._capture_on_failure - Line: 67 - CAPTURED: Screenshot on failure of 'Fill_Timeout' for Password Input Field.
+2025-10-16 20:15:51,013 - TestAutomationLogger - INFO - PlayWrightClient.close_browser - Line: 248 - Browser and playwright instance closed.
+2025-10-16 20:15:51,198 - TestAutomationLogger - INFO - PlayWrightClient.close_browser - Line: 248 - Browser and playwright instance closed.
+2025-10-16 20:15:51,199 - TestAutomationLogger - ERROR - runner.run_behave_test - Line: 440 - Behave tests failed with exit code: 1
+2025-10-16 20:15:51,210 - TestAutomationLogger - INFO - runner.run_behave_tests - Line: 484 - Test Summary: Passed: 0, Failed: 2, Skipped: 0, Errors: 0
+2025-10-16 20:15:51,213 - TestAutomationLogger - INFO - runner.write_merged_json_report - Line: 659 - Merged JSON report written to: C:\pythonProject\pythonProject\pythonProject\PythonAutomationFramework - Playwright - Copy\reports\Consolidated_Test_report_2025-10-16_20-14-40.json
+2025-10-16 20:15:51,299 - TestAutomationLogger - INFO - runner.run_behave_tests - Line: 490 - Test execution ended at: 2025-10-16 20:15:51.299212
+2025-10-16 20:15:51,299 - TestAutomationLogger - INFO - runner.run_behave_tests - Line: 491 - Total execution time: 0:01:10.747712
+2025-10-16 20:15:51,299 - TestAutomationLogger - ERROR - runner.<module> - Line: 693 - Some tests failed with Exit Code 1.
