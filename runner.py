@@ -285,7 +285,7 @@ class TestRunnerConfig:
 config = TestRunnerConfig(env=os.getenv("ENVIRONMENT", "dev")).get_config()
 
 
-def construct_behave_args(test_tags=DEFAULT_TAGS, feature_files=None):
+def construct_behave_args(test_tags=DEFAULT_TAGS, feature_files=None, dry_run=False):
     behave_args = []
     # If test_tags is not provided, use DEFAULT_TAGS
     if test_tags:
@@ -302,6 +302,8 @@ def construct_behave_args(test_tags=DEFAULT_TAGS, feature_files=None):
 
     ## Add the --format=json option and specify the json report file using --outfile
     behave_args.append("--no-capture")
+    if dry_run:
+        behave_args.append("--dry-run")
     if feature_files:
         return behave_args, json_report_file, html_report_file, feature_files
     return behave_args, json_report_file, html_report_file
@@ -446,15 +448,16 @@ def run_behave_test(behave_args, test_run_id, feature_files):
         return json_report_file, 1
 
 
-def run_behave_tests(parallel_run=PARALLEL_RUN, max_parallel_jobs=MAX_PARALLEL_JOBS, test_tags=DEFAULT_TAGS):
+def run_behave_tests(parallel_run=PARALLEL_RUN, max_parallel_jobs=MAX_PARALLEL_JOBS, test_tags=DEFAULT_TAGS, dry_run=False):
     logger.info(
-        f"Starting Behave tests with parallel_run={parallel_run}, max_parallel_jobs={max_parallel_jobs}, test_tags={test_tags}")
+        f"Starting Behave tests with parallel_run={parallel_run}, max_parallel_jobs={max_parallel_jobs}, test_tags={test_tags}, dry_run={dry_run}")
     start_time = datetime.now()
     logger.info(f"Test execution started at: {start_time}")
     try:
         feature_dirs = get_feature_dirs()
         behave_args, json_report_file, html_report_file, feature_dirs = construct_behave_args(test_tags=test_tags,
-                                                                                              feature_files=feature_dirs)
+                                                                                              feature_files=feature_dirs,
+                                                                                              dry_run=dry_run)
         logger.info(f"Running Behave with arguments: {behave_args} and feature files: {feature_dirs}")
         json_report_files = []
         overall_return_code = 0
@@ -669,6 +672,7 @@ if __name__ == '__main__':
                         help='Environment to run tests against (default: dev)')
     parser.add_argument('--tags', type=str, nargs='+', default=DEFAULT_TAGS, help=f'List of tags to filter tests (default: {constants.DEFAULT_TAGS})')
     parser.add_argument('--no-parallel', default='--no-parallel', action = 'store_true', help='Disable parallel execution of tests')
+    parser.add_argument('--dry-run', action='store_true', help='Validate scenarios without executing steps')
 
     args = parser.parse_args()
     if args.no_parallel:
@@ -684,7 +688,7 @@ if __name__ == '__main__':
     os.environ['PYTHONPATH'] = os.path.dirname(os.path.abspath(__file__)) + os.pathsep + os.environ.get('PYTHONPATH', '')
 
     Zipfile = create_artifacts_zip()
-    overall_return_code = run_behave_tests(parallel_run=PARALLEL_RUN, test_tags=DEFAULT_TAGS)
+    overall_return_code = run_behave_tests(parallel_run=PARALLEL_RUN, test_tags=DEFAULT_TAGS, dry_run=args.dry_run)
 
     if overall_return_code == 0:
         logger.info("All tests passed successfully with Exit Code 0.")

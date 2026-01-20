@@ -106,9 +106,17 @@ class PlaywrightClient:
             self.playwright = await async_playwright().start()
             browser_config = self.config.get('browser', {})
             browser_type = browser_config.get("type", "chromium").lower()
+            env_browser = os.getenv("PLAYWRIGHT_BROWSER")
+            if env_browser:
+                browser_type = env_browser.lower()
+            env_headless = os.getenv("PLAYWRIGHT_HEADLESS")
+            if env_headless is not None:
+                browser_config["headless"] = env_headless.lower() in ["1", "true", "yes"]
 
             channel = None
-            if browser_type == 'edge':
+            if browser_type == 'chromium':
+                playwright_browser_type = self.playwright.chromium
+            elif browser_type == 'edge':
                 playwright_browser_type = self.playwright.chromium
                 channel = 'msedge'
             elif browser_type == 'chrome':
