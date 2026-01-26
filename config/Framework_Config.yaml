@@ -12,7 +12,7 @@ test_results_archiving:
   destination: "azure_blob"       # Archive destination
   azure_blob_config:
     account_name: "your_account_name"
-    account_key: "your_account_key"
+    account_key_vault_path: "path/to/azure_blob/account_key"
     container_name: "test-reports"
     upload_path: "test_results"
     overwrite: false
@@ -26,4 +26,4 @@ logging_config:
 vault_config:
   use_hashicorp_vault: "Yes"        # Flag to enable Vault
   vault_url: "http://vault.example.com"  # Vault URL
-  vault_token: "dev-vault-token"  # Vault token (use Vault if set to Yes)
+  vault_token_path: "path/to/vault/token"  # Vault token path

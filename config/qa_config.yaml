@@ -8,20 +8,20 @@ kafka:
   kafka_auto_offset_reset: "earliest"
   kafka_enable_auto_commit: true
   sasl_mechanism: "PLAIN"
-  sasl_plain_username: "qa-username"  # QA-specific username
-  sasl_plain_password: ""  # Leave empty if Vault or another mechanism is used for token
+  sasl_plain_username: "qa-username"  # Non-secret identifier
+  sasl_plain_password_vault_path: "path/to/kafka/qa/password"
   security_protocol: "SASL_PLAINTEXT"
 
 # HashiCorp Vault usage
 vault:
-  use_hashicorp_vault: "Yes"  # Using Vault for fetching secrets
-  vault_token: "qa-vault-token"       # Vault token for QA environment
-  vault_url: "http://vault.qa.example.com" # Vault URL for QA environment
-  vault_secret_path: "path/to/kafka/qa/token" # Path to the Kafka token secret in Vault
+  use_hashicorp_vault: "Yes"
+  vault_url: "http://vault.qa.example.com"
+  vault_token_path: "path/to/vault/qa/token"
+  vault_secret_path: "path/to/kafka/qa/token"
 
 # Databricks configurations
 databricks:
-  databricks_token: "qa-databricks-token"
+  databricks_token_vault_path: "path/to/databricks/qa/token"
   databricks_host: "qa-databricks-host"
 
 # ADLS configurations
@@ -35,5 +35,19 @@ adls:
 splunk:
   enabled: true
   url: "https://splunk-qa.example.com"
-  token: "splunk-qa-token"
+  token_vault_path: "path/to/splunk/qa/token"
   index: "qa-test-results"
+
+# Application-specific configs (per environment)
+apps:
+  - app_id: "enrollment"
+    app_type: "web"
+    base_url: "https://qa-enrollment.example.com"
+    auth:
+      type: "none"
+      username_vault_path: ""
+      password_vault_path: ""
+    data_seed:
+      strategy: "api"
+      api_base_url: "https://qa-enrollment-api.example.com"
+      api_token_vault_path: "path/to/enrollment/qa/api_token"

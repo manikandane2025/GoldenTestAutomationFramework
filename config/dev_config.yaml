@@ -8,20 +8,20 @@ kafka:
   kafka_auto_offset_reset: "earliest"
   kafka_enable_auto_commit: true
   sasl_mechanism: "PLAIN"
-  sasl_plain_username: "dev-username"  # Dev-specific username
-  sasl_plain_password: ""  # Leave empty if Vault or another mechanism is used for token
+  sasl_plain_username: "dev-username"  # Non-secret identifier
+  sasl_plain_password_vault_path: "path/to/kafka/dev/password"
   security_protocol: "SASL_PLAINTEXT"
 
 # HashiCorp Vault usage
 vault:
-  use_hashicorp_vault: "No"  # Not using Vault for dev environment (hardcoded values)
-  vault_token: "dev-vault-token"       # Vault token for dev environment
-  vault_url: "http://vault.example.com" # Vault URL for dev environment
-  vault_secret_path: "path/to/kafka/dev/token" # Path to the Kafka token secret in Vault
+  use_hashicorp_vault: "Yes"
+  vault_url: "http://vault.example.com"
+  vault_token_path: "path/to/vault/dev/token"
+  vault_secret_path: "path/to/kafka/dev/token"
 
 # Databricks configurations
 databricks:
-  databricks_token: "dev-databricks-token"
+  databricks_token_vault_path: "path/to/databricks/dev/token"
   databricks_host: "dev-databricks-host"
 
 # ADLS configurations
@@ -34,6 +34,20 @@ adls:
 splunk:
   enabled: true
   url: "https://splunk-dev.example.com"
-  token: "splunk-dev-token"
+  token_vault_path: "path/to/splunk/dev/token"
   index: "dev-test-results"
+
+# Application-specific configs (per environment)
+apps:
+  - app_id: "enrollment"
+    app_type: "web"
+    base_url: "https://dev-enrollment.example.com"
+    auth:
+      type: "none"
+      username_vault_path: ""
+      password_vault_path: ""
+    data_seed:
+      strategy: "api"
+      api_base_url: "https://dev-enrollment-api.example.com"
+      api_token_vault_path: "path/to/enrollment/dev/api_token"
 
