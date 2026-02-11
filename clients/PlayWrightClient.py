@@ -101,7 +101,7 @@ class PlaywrightClient:
         except Exception as e:
             logger.error(f"FATAL: Could not capture screenshot during client failure: {e}")
 
-async def _start_browser_session(self):
+    async def _start_browser_session(self):
         try:
             self.playwright = await async_playwright().start()
             browser_config = self.config.get('browser', {})
