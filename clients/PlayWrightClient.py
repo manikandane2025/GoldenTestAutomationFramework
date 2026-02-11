@@ -101,7 +101,7 @@ class PlaywrightClient:
         except Exception as e:
             logger.error(f"FATAL: Could not capture screenshot during client failure: {e}")
 
-    async def _start_browser_session(self):
+async def _start_browser_session(self):
         try:
             self.playwright = await async_playwright().start()
             browser_config = self.config.get('browser', {})
@@ -151,10 +151,16 @@ class PlaywrightClient:
                 "channel": channel,
                 "executable_path": browser_config.get("driver_path")
             }
+            if browser_type in ["chromium", "chrome", "edge"]:
+                # Disable Chromium sandbox explicitly for containerized execution.
+                launch_options["chromium_sandbox"] = False
 
             download_dir = None
             if browser_type in ['chrome', 'edge']:
                 download_dir = browser_config.get(f'{browser_type}_options', {}).get('prefs', {}).get(
+                    'download.default_directory')
+            if browser_type == 'chromium' and not download_dir:
+                download_dir = browser_config.get('chromium_options', {}).get('prefs', {}).get(
                     'download.default_directory')
             if not download_dir:
                 download_dir = browser_config.get('additional_capabilities', {}).get('prefs', {}).get(
@@ -171,13 +177,20 @@ class PlaywrightClient:
             if additional_args.get('disable_logging'):
                 browser_args.append('--disable-logging')
 
-            if browser_type in ['chrome', 'edge']:
-                specific_options = browser_config.get(f'{browser_type}_options', {})
+            if browser_type in ['chrome', 'edge', 'chromium']:
+                specific_options = browser_config.get(f'{browser_type}_options', {}) if browser_type != "chromium" else browser_config.get('chromium_options', {})
                 chrome_edge_args = specific_options.get('args', {})
                 if chrome_edge_args.get('no_sandbox'):
                     browser_args.append('--no-sandbox')
+                if chrome_edge_args.get('disable_setuid_sandbox'):
+                    browser_args.append('--disable-setuid-sandbox')
+                if chrome_edge_args.get('disable_dev_shm_usage'):
+                    browser_args.append('--disable-dev-shm-usage')
                 if chrome_edge_args.get('window_size'):
                     browser_args.append(f'--window-size={chrome_edge_args["window_size"]}')
+            env_browser_args = os.getenv("PLAYWRIGHT_CHROMIUM_ARGS")
+            if env_browser_args:
+                browser_args.extend([arg for arg in env_browser_args.split() if arg])
 
             if browser_args:
                 launch_options['args'] = browser_args
