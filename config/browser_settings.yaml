@@ -2,7 +2,7 @@ browser:
   # --- Global/Client Configuration (Used by PlaywrightClient) ---
 
   # Browser type to launch
-  type: chrome
+  type: firefox
 
   # Global Headless Mode: Takes precedence over browser-specific args if present.
   headless: false
@@ -32,7 +32,7 @@ browser:
       disable_logging: true
 
     prefs:
-      download.default_directory: "/path/to/download"
+      download.default_directory: "/tmp/playwright-downloads"
 
   # --- Chrome-specific Options (Cleaned up to remove duplicates) ---
   chrome_options:
