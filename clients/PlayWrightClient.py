@@ -109,6 +109,21 @@ class PlaywrightClient:
             env_browser = os.getenv("PLAYWRIGHT_BROWSER")
             if env_browser:
                 browser_type = env_browser.lower()
+            if browser_type == "firefox":
+                cache_home = os.environ.get("XDG_CACHE_HOME")
+                config_home = os.environ.get("XDG_CONFIG_HOME")
+                home_dir = os.environ.get("HOME", "/home/pwuser")
+                if not cache_home:
+                    cache_home = os.path.join(home_dir, ".cache")
+                    os.environ["XDG_CACHE_HOME"] = cache_home
+                if not config_home:
+                    config_home = os.path.join(home_dir, ".config")
+                    os.environ["XDG_CONFIG_HOME"] = config_home
+                try:
+                    os.makedirs(os.path.join(cache_home, "dconf"), exist_ok=True)
+                    os.makedirs(config_home, exist_ok=True)
+                except Exception as e:
+                    logger.warning(f"Failed to prepare Firefox cache/config dirs: {e}")
             env_headless = os.getenv("PLAYWRIGHT_HEADLESS")
             if env_headless is not None:
                 browser_config["headless"] = env_headless.lower() in ["1", "true", "yes"]
