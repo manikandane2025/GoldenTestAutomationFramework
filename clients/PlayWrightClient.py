@@ -83,6 +83,7 @@ class PlaywrightClient:
             # Note: In an async environment, the cleanup logic often handles errors.
             logger.error(f"ERROR: Failed to capture manual screenshot '{safe_label}': {e}")
 
+    @staticmethod
     async def _client_capture_failure(page: Page, action_name: str, exception: Exception):
         """Utility to capture and store screenshot on PlaywrightClient failures."""
         try:
@@ -106,11 +107,17 @@ class PlaywrightClient:
             self.playwright = await async_playwright().start()
             browser_config = self.config.get('browser', {})
             browser_type = browser_config.get("type", "chromium").lower()
-            if os.getenv("AA_ENFORCE_FIREFOX", "").lower() in ["1", "true", "yes"]:
+            enforce_firefox = os.getenv("AA_ENFORCE_FIREFOX", "").lower() in ["1", "true", "yes"]
+            if enforce_firefox:
                 browser_type = "firefox"
             env_browser = os.getenv("PLAYWRIGHT_BROWSER")
             if env_browser:
-                browser_type = env_browser.lower()
+                if enforce_firefox and env_browser.lower() != "firefox":
+                    logger.warning(
+                        f"Ignoring PLAYWRIGHT_BROWSER='{env_browser}' because AA_ENFORCE_FIREFOX is enabled."
+                    )
+                else:
+                    browser_type = env_browser.lower()
             if browser_type == "firefox":
                 cache_home = os.environ.get("XDG_CACHE_HOME")
                 config_home = os.environ.get("XDG_CONFIG_HOME")
@@ -166,14 +173,15 @@ class PlaywrightClient:
                 logger.info(f"Set download directory to {download_dir}.")
 
             browser_args = []
-            if browser_config.get("disable_gpu"):
-                browser_args.append('--disable-gpu')
+            # Chromium flags must not be sent to Firefox/WebKit.
+            if browser_type in ['chrome', 'edge', 'chromium']:
+                if browser_config.get("disable_gpu"):
+                    browser_args.append('--disable-gpu')
 
-            additional_args = browser_config.get('additional_capabilities', {}).get('args', {})
-            if additional_args.get('disable_logging'):
-                browser_args.append('--disable-logging')
+                additional_args = browser_config.get('additional_capabilities', {}).get('args', {})
+                if additional_args.get('disable_logging'):
+                    browser_args.append('--disable-logging')
 
-            if browser_type in ['chrome', 'edge']:
                 specific_options = browser_config.get(f'{browser_type}_options', {})
                 chrome_edge_args = specific_options.get('args', {})
                 if chrome_edge_args.get('no_sandbox'):
@@ -186,6 +194,8 @@ class PlaywrightClient:
 
             if browser_type == 'firefox':
                 firefox_prefs = browser_config.get('firefox_options', {}).get('prefs', {})
+                firefox_prefs.setdefault("network.dns.disableIPv6", True)
+                firefox_prefs.setdefault("network.http.fast-fallback-to-IPv4", True)
                 if firefox_prefs:
                     launch_options['firefox_user_prefs'] = firefox_prefs
 
